@@ -126,50 +126,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalContainer = document.getElementById("modal-container");
   const modalBody = document.getElementById("modal-body");
   const modalClose = document.querySelector(".modal-close");
-  const seeMoreButtons = document.querySelectorAll(".see-more-btn");
+  const seeMoreButtons = document.querySelectorAll(".see-more-link");
 
   // Company details data
   const companyDetails = {
     brahmasumm: {
-      title: "Brahmasumm AI - Founding Engineer",
+      title: "Brahmasumm AI - AI Engineer",
       content: `
-        <h3>About Brahmasumm AI</h3>
-        <p>Brahmasumm AI is an enterprise AI startup building next-generation document intelligence platforms. We enable organizations to unlock insights from their vast knowledge bases through advanced RAG systems and agentic workflows.</p>
+        <h3>Document Intelligence for Enterprises</h3>
+        <p>Brahmasumm AI is an enterprise AI startup building Document intelligence platforms for Enterprises. We enable organizations to unlock insights from their vast knowledge bases through advanced RAG systems and agentic workflows.</p>
         
         <h3>My Role & Impact</h3>
         <ul>
-          <li>As Founding Engineer, I architected and deployed production-scale RAG pipelines processing 50GB+ datasets for Fortune 500 clients</li>
+          <li>As AI Engineer hire, I designed, developed and deployed production-scale RAG pipelines processing 50GB+ datasets for Fortune 500 clients.</li>
           <li>Led the implementation of multi-modal extraction capabilities for PDFs, presentations, and spreadsheets using Azure Document Intelligence API and custom LLM extractors</li>
-          <li>Successfully deployed secure on-premises LLM solutions for Lawrence Berkeley National Lab (discoverers of 18+ periodic elements) and NYSE-listed ATMUS Filtration, ensuring complete IP protection</li>
-          <li>Achieved sub-second query response times through intelligent chunking strategies and vector database optimization (ChromaDB, Pinecone)</li>
-          <li>Evaluated and benchmarked open-source LLM models (Deepseek 67B, Qwen2.5 72B) for custom model deployment</li>
-          <li>Reduced inference costs by 40% while improving accuracy through strategic optimizations</li>
+          <li>Successfully deployed secure on-premises LLM solutions for Lawrence Berkeley National Lab (discoverers of 18+ periodic elements) and NYSE-listed ATMUS Filtration, ensuring their Intellectual Property protection.</li>
+          <li>Achieved sub-second query response times through intelligent chunking strategies and vector database optimization.</li>
+          <li>Evaluated and benchmarked open-source LLM models (Deepseek 67B, Qwen2.5 72B) for custom model deployment.</li>
+          <li>Led technical hiring, screening 240+ candidates and mentoring a lean AI team while partnering directly with CEO Dr. Balaji Viswanathan on roadmap and delivery.</li>
         </ul>
         
         <h3>Key Technologies</h3>
         <ul>
-          <li>LangChain, LangGraph for agentic workflows</li>
           <li>Azure Document Intelligence API for document processing</li>
-          <li>Vector databases: ChromaDB, Pinecone</li>
+          <li>Vector databases: pgvector, etc.</li>
           <li>Multi-modal AI for processing video/audio content</li>
           <li>On-premises LLM deployment and optimization</li>
         </ul>
         
         <h3>Direct Collaboration</h3>
-        <p>Worked directly with CEO Dr. Balaji Viswanathan on strategic priorities and client deliverables. Also led technical hiring, screening 240+ candidates to build a high-performing AI engineering team.</p>
+        <p>Worked directly with CEO Dr. Balaji Viswanathan on strategic priorities and client deliverables. Also performed technical hiring, screening 240+ candidates to build a high-performing AI engineering team.</p>
       `
     },
     google: {
       title: "Google - Senior Software Development Engineer",
       content: `
         <h3>Google Cloud Platform - Cluster Planning Team</h3>
-        <p>Part of Google's compute resource planning and optimization systems team responsible for developing software systems for forecasting, ordering, planning, and provisioning of compute, hardware, and network for Google's Data centers.</p>
+        <p>Part of Google's compute resource planning and optimization systems team responsible for developing software systems for forecasting, planning, and ordering of compute, hardware, and network for Google's Data centers.</p>
         
         <h3>Major Accomplishments</h3>
         <ul>
-          <li>Led end-to-end implementation of task generation system for Google Cloud datacenter operations, transforming static Excel-based workflows into dynamic, automated processes</li>
+          <li>Implemented Rack move automation in the task generation system for Google Cloud datacenter operations, transforming static Excel-based workflows into dynamic, automated processes</li>
           <li>System now handles 1000+ daily operations across global datacenters</li>
-          <li>Engineered automated workflow for 200+ rack migrations, reducing manual intervention by 80%</li>
+          <li>Engineered automated workflow for 200+ rack migrations, reducing manual intervention by 40%</li>
           <li>Developed automated IPv4 provisioning system for top-of-rack infrastructure</li>
           <li>Built intelligent reachability zone calculation system optimizing fiber utilization by 15%</li>
         </ul>
@@ -189,11 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
       title: "Apple - Senior Software Development Engineer",
       content: `
         <h3>Cloud Technologies Team</h3>
-        <p>Worked on automation enabling data-driven customer insights and analysis into cloud technologies usage across Apple's infrastructure.</p>
+        <p>Worked on automation enabling data-driven customer insights and analysis into cloud technologies usage across Apple's Cloud infrastructure.</p>
         
         <h3>Cloud Usage Intelligence Platform</h3>
         <ul>
-          <li>Architected platform using Python microservices and RESTful APIs</li>
+          <li>Architected platform using Python cronjob and RESTful APIs</li>
           <li>Delivered AI-driven analytics enabling $240,000 in annual cost savings</li>
           <li>Optimized cloud provider selection across 12 projects in 5 organizations</li>
         </ul>
@@ -253,16 +252,16 @@ document.addEventListener("DOMContentLoaded", () => {
         <h3>Healthcare Data Pipeline</h3>
         <ul>
           <li>Architected OCR pipeline processing 900K+ HIPAA-compliant medical records</li>
-          <li>Implemented text extraction and parsing for downstream ML training</li>
-          <li>Integrated 3+ data flow processes in Apache Airflow DAG pipeline</li>
-          <li>Fed processed data into Spark/BigQuery for model training</li>
+          <li>Implemented text extraction and parsing for downstream ML training.</li>
+          <li>Integrated 5+ data flow processes in Apache Airflow DAG pipeline.</li>
+          <li>Fed processed data into Spark/BigQuery for model training downstream.</li>
         </ul>
         
         <h3>Observability Infrastructure</h3>
         <ul>
-          <li>Designed and deployed EFK (Elasticsearch, Fluentd, Kibana) stack</li>
+          <li>Designed and deployed EFK (Elasticsearch, Fluentd, Kibana) stack.</li>
           <li>Enabled comprehensive log aggregation and analysis</li>
-          <li>Improved system visibility and reduced troubleshooting time by 60%</li>
+          <li>Improved system visibility and reduced troubleshooting time by 20%</li>
         </ul>
         
         <h3>Technologies & Compliance</h3>
@@ -325,9 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  // Add event listeners to see more buttons
+  // Add event listeners to see more links
   seeMoreButtons.forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
       const company = button.dataset.modal;
       showModal(company);
     });
@@ -353,4 +353,31 @@ document.addEventListener("DOMContentLoaded", () => {
       hideModal();
     }
   });
+
+  // Email copy functionality
+  const emailCopyBtn = document.getElementById("email-copy-btn");
+  if (emailCopyBtn) {
+    emailCopyBtn.addEventListener("click", async () => {
+      const email = emailCopyBtn.dataset.email;
+      try {
+        await navigator.clipboard.writeText(email);
+        
+        // Update button text temporarily
+        const textSpan = emailCopyBtn.querySelector("span:nth-child(2)");
+        const originalText = textSpan.textContent;
+        textSpan.textContent = "Copied!";
+        emailCopyBtn.style.backgroundColor = "rgba(16, 185, 129, 0.1)";
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          textSpan.textContent = originalText;
+          emailCopyBtn.style.backgroundColor = "";
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy email:", err);
+        // Fallback: show email in alert
+        alert(`Email: ${email}`);
+      }
+    });
+  }
 });
