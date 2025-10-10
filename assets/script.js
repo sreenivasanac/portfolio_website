@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let rafId = null;
 
+  const getNavOffset = () => {
+    const navPosition = window.getComputedStyle(topNav).position;
+    return navPosition === "fixed" ? topNav.offsetHeight + 24 : 0;
+  };
+
   const updatePath = (activeId) => {
     if (!navPath) {
       return;
@@ -89,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const navOffset = topNav.offsetHeight + 24;
+      const navOffset = getNavOffset();
       const targetTop = target.element.getBoundingClientRect().top + window.scrollY - navOffset;
 
       window.scrollTo({
