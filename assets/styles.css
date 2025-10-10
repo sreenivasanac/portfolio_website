@@ -353,6 +353,50 @@ a {
   color: inherit;
   font-size: 1rem;
   text-transform: none;
+  position: relative;
+}
+
+.terminal-command-text::after {
+  content: "";
+  display: none;
+  width: 0.3ch;
+  height: 1.1em;
+  margin-left: 6px;
+  border-radius: 6px;
+  background: #47cfeb;
+  color: #47cfeb;
+}
+
+.terminal-command-text.terminal-typing::after {
+  display: inline-block;
+  animation: terminalCaretTyping 1s steps(2, start) infinite;
+}
+
+.terminal-command-text.terminal-caret::after {
+  display: inline-block;
+  animation: terminalCaretBlink 1.05s steps(1, end) infinite;
+}
+
+@keyframes terminalCaretTyping {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.1%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes terminalCaretBlink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .hero-content {
@@ -409,6 +453,7 @@ a {
 
 .hero-name {
   color: #47cfeb;
+  animation: hero-gap-wobble 1.05s steps(1, end) infinite;
 }
 
 .hero-name-text {
@@ -418,39 +463,66 @@ a {
 }
 
 .hero-name-text::after {
-  content: "";
+  content: "_";
   display: inline-block;
-  width: 0.25ch;
-  height: 1.1em;
+  width: 0.65ch;
   margin-left: 6px;
-  border-radius: 8px;
-  background: #47cfeb;
-  animation: hero-cursor-blink 1.05s steps(1, end) infinite;
+  color: #47cfeb;
+  animation: hero-caret-underscore 1.05s steps(1, end) infinite;
 }
 
-@keyframes hero-cursor-blink {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  55%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-name-text::after {
-    animation: none;
-    opacity: 1;
-  }
-}
-
-.hero-content h1 span:not(.hero-name-text) {
+.hero-role {
   font-size: 1.5rem;
   font-weight: 300;
   color: #94a3b8;
   white-space: nowrap;
+}
+
+@keyframes hero-caret-underscore {
+  0%,
+  45% {
+    opacity: 1;
+    width: 0.65ch;
+    margin-left: 6px;
+  }
+  55%,
+  100% {
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+  }
+}
+
+@keyframes hero-gap-wobble {
+  0%,
+  45% {
+    gap: 16px;
+  }
+  55%,
+  100% {
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name {
+    animation: none;
+    gap: 16px;
+  }
+
+  .hero-name-text::after {
+    animation: none;
+    opacity: 1;
+    width: 0.65ch;
+    margin-left: 6px;
+    color: #47cfeb;
+  }
+
+  .terminal-command-text.terminal-typing::after,
+  .terminal-command-text.terminal-caret::after {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .hero-text {
