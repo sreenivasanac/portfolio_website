@@ -68,18 +68,25 @@ a {
 
 .app {
   position: relative;
-  max-width: 1180px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 48px 24px 80px;
+  padding: 100px 40px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
+}
+
+.app main > section {
+  margin: 16px 0;
 }
 
 .top-nav {
-  position: sticky;
+  position: fixed;
   top: 24px;
-  z-index: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 48px), 1280px);
+  z-index: 30;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -90,13 +97,6 @@ a {
   padding: 12px 20px;
   backdrop-filter: blur(6px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-  transition: transform var(--transition-base), opacity var(--transition-base);
-}
-
-.top-nav.nav-hidden {
-  transform: translateY(-140%);
-  opacity: 0;
-  pointer-events: none;
 }
 
 .nav-path {
@@ -228,7 +228,7 @@ a {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 6px;
-  padding: 32px;
+  padding: 24px;
   backdrop-filter: none;
   box-shadow: var(--card-shadow);
   transition: border-color 0.2s ease;
@@ -239,7 +239,7 @@ a {
 }
 
 .hero-card {
-  padding: 24px 28px 32px;
+  padding: 22px 22px 24px;
 }
 
 .terminal-bar {
@@ -314,15 +314,39 @@ a {
 }
 
 .terminal-command {
-  font-family: "JetBrains Mono", monospace;
-  color: #858585;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  color: #4ec9b0;
+  letter-spacing: 0.02em;
+}
+
+.terminal-command-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.terminal-command-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.terminal-command-text {
+  color: inherit;
+  font-size: 1rem;
+  text-transform: none;
 }
 
 .hero-content {
   display: flex;
-  gap: 28px;
-  align-items: center;
+  flex-direction: row;
+  gap: 32px;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .avatar {
@@ -354,55 +378,78 @@ a {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .hero-content h1 {
-  margin: 0 0 12px;
-  color: var(--text-primary);
-  font-size: 2.1rem;
-  line-height: 1.3;
+  margin: 0;
+  font-weight: normal;
+  color: #47cfeb;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
 }
 
 .hero-name {
-  color: #f6f7ff;
+  color: #47cfeb;
 }
 
 .hero-content h1 span {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #94a3b8;
+  white-space: nowrap;
 }
 
 .hero-text {
   margin: 0;
-  color: rgba(200, 210, 223, 0.88);
+  color: #ffffff;
 }
 
 .hero-controls {
   display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.hero-links {
+  display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
+  gap: 12px;
+  padding: 10px 8px;
   border: none;
-  border-radius: 0;
-  background: transparent;
-  color: rgba(223, 229, 240, 0.92);
-  font-size: 0.88rem;
-  text-transform: lowercase;
-  letter-spacing: 0.04em;
-  transition: color 0.22s ease, transform 0.22s ease;
+  border-radius: 12px;
+  background: rgba(36, 44, 55, 0.6);
+  color: rgba(223, 229, 240, 0.94);
+  font-size: 0.96rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.03em;
+  transition: color var(--transition-quick), background var(--transition-quick), transform var(--transition-quick);
 }
 
-.hero-pill:hover {
+.hero-pill:hover,
+.hero-pill:focus-visible {
   color: #47cfeb;
+  background: rgba(71, 207, 235, 0.12);
   transform: translateY(-1px);
+}
+
+.hero-pill:focus-visible {
+  outline: none;
 }
 
 .hero-pill-icon {
@@ -427,6 +474,17 @@ a {
   width: 20px;
   height: 20px;
   color: inherit;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-6px);
+  transition: opacity var(--transition-quick), transform var(--transition-quick), visibility var(--transition-quick);
+}
+
+.hero-pill:hover .hero-pill-external,
+.hero-pill:focus-visible .hero-pill-external {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
 }
 
 .hero-pill-external svg {
@@ -434,17 +492,18 @@ a {
   height: 16px;
 }
 
+
 .section-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   margin-bottom: 32px;
 }
 
 .section-header h2 {
   margin: 0;
-  color: var(--text-primary);
+  color: #47cfeb;
   font-size: 1.6rem;
   display: flex;
   gap: 12px;
@@ -453,13 +512,19 @@ a {
 
 .section-icon {
   color: var(--accent);
-  font-family: "JetBrains Mono", monospace;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
 }
 
 .section-command {
-  font-family: "JetBrains Mono", monospace;
-  color: var(--accent);
-  white-space: nowrap;
+  width: 100%;
 }
 
 .experience-card .experience-item + .experience-item {
@@ -477,7 +542,7 @@ a {
 
 .experience-heading h3 {
   margin: 0;
-  color: var(--text-primary);
+  color: #47cfeb;
   font-size: 1.4rem;
 }
 
@@ -518,6 +583,11 @@ a {
   padding-left: 20px;
   display: grid;
   gap: 10px;
+}
+
+.education-note {
+  margin: 14px 0 0;
+  color: var(--text-secondary);
 }
 
 .project-grid {
@@ -585,7 +655,7 @@ a {
 
 .project-item h3 {
   margin: 0;
-  color: var(--text-primary);
+  color: #47cfeb;
   font-size: 1.25rem;
 }
 
@@ -828,7 +898,9 @@ a {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-    width: 100%;
+    width: calc(100% - 32px);
+    top: 16px;
+    padding: 16px;
   }
 
   .nav-links {
@@ -836,16 +908,18 @@ a {
   }
 
   .hero-content {
+    width: 100%;
     flex-direction: column;
-    text-align: center;
+    align-items: flex-start;
   }
 
   .hero-copy {
-    align-items: center;
+    align-items: flex-start;
+    text-align: left;
   }
 
-  .hero-controls {
-    justify-content: center;
+  .hero-links {
+    justify-content: flex-start;
   }
 
   .section-header {
@@ -864,7 +938,7 @@ a {
 
 @media (max-width: 600px) {
   .app {
-    padding: 32px 16px 64px;
+    padding: 150px 16px 64px;
   }
 
   .card {
@@ -880,8 +954,8 @@ a {
     align-items: flex-start;
   }
 
-  .hero-controls {
+  .hero-links {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

@@ -16,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  let lastScrollY = window.scrollY;
-  let navHidden = false;
   let rafId = null;
 
   const updatePath = (activeId) => {
@@ -49,19 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const updateOnScroll = () => {
     const currentScrollY = window.scrollY;
-    const hideThreshold = topNav.offsetHeight * 2;
-
-    if (currentScrollY > hideThreshold && currentScrollY > lastScrollY + 4) {
-      if (!navHidden) {
-        topNav.classList.add("nav-hidden");
-        navHidden = true;
-      }
-    } else if (navHidden) {
-      topNav.classList.remove("nav-hidden");
-      navHidden = false;
-    }
-
-    lastScrollY = currentScrollY;
 
     let currentSectionId = sections[0].id;
     const anchorLine = window.innerHeight * 0.35;
