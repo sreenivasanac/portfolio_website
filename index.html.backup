@@ -335,75 +335,24 @@
           </article>
           <article class="experience-item">
             <div class="experience-heading">
-              <div class="company-header">
-                <img src="assets/logos/logo-placeholder.svg" alt="Fathom Health" class="company-logo" />
-                <div>
-                  <h3>Fathom Health</h3>
-                  <p class="role">Software Development Engineer · ML Platform for Medical Coding</p>
-                </div>
+              <div>
+                <h3>Previous Roles</h3>
+                <p class="role">Software &amp; AI Engineer</p>
               </div>
-              <span class="experience-date">Sep 2019 – Mar 2020 · San Francisco, CA</span>
+              <span class="experience-date">2014 – 2020</span>
             </div>
             <div class="tag-row">
+              <span>Enterprise Platforms</span>
               <span>Healthcare AI</span>
-              <span>OCR</span>
-              <span>Apache Airflow</span>
-              <span>HIPAA</span>
-            </div>
-            <ul>
-              <li>Architected OCR pipeline processing 900K+ HIPAA-compliant medical records, implementing text extraction and parsing for downstream Spark/BigQuery ML training.</li>
-              <li>Designed and deployed EFK (Elasticsearch, Fluentd, Kibana) stack for comprehensive log aggregation and analysis, improving system visibility and reducing troubleshooting time by 60%.</li>
-            </ul>
-            <button class="see-more-btn" data-modal="fathom">See More Details</button>
-          </article>
-          <article class="experience-item">
-            <div class="experience-heading">
-              <div class="company-header">
-                <img src="assets/logos/logo-placeholder.svg" alt="Invento Robotics" class="company-logo" />
-                <div>
-                  <h3>Invento Robotics</h3>
-                  <p class="role">AI Engineer · Humanoid Robot Platform</p>
-                </div>
-              </div>
-              <span class="experience-date">Apr 2018 – Jul 2018 · Bangalore, India</span>
-            </div>
-            <div class="tag-row">
-              <span>Conversational AI</span>
-              <span>RASA</span>
-              <span>NVIDIA Jetson</span>
-              <span>React Native</span>
-            </div>
-            <ul>
-              <li>Developed offline NLU and conversation system for humanoid robot Mitra using RASA framework on NVIDIA Jetson TX2.</li>
-              <li>Implemented Alexa Skills using AWS Lambda for voice-controlled guest registration and recommendation systems.</li>
-              <li>Built responsive chatbot interface using React.js/React Native with modular, extensible components.</li>
-            </ul>
-            <button class="see-more-btn" data-modal="invento">See More Details</button>
-          </article>
-          <article class="experience-item">
-            <div class="experience-heading">
-              <div class="company-header">
-                <img src="assets/logos/groupon-logo.png" alt="Groupon" class="company-logo" />
-                <div>
-                  <h3>Groupon</h3>
-                  <p class="role">Software Development Engineer</p>
-                </div>
-              </div>
-              <span class="experience-date">Jun 2014 – Jun 2017 · Palo Alto, CA</span>
-            </div>
-            <div class="tag-row">
-              <span>AngularJS</span>
-              <span>Ruby on Rails</span>
-              <span>Microservices</span>
+              <span>Humanoid Robotics</span>
               <span>React</span>
+              <span>Airflow</span>
             </div>
             <ul>
-              <li>Co-architected mobile-responsive web application in AngularJS for Card Linked Offers, used by 500+ sales representatives to create Groupon deals.</li>
-              <li>Automated contract-signing process through DocuSign API integration, saving $40,000+ monthly.</li>
-              <li>Owned Contract Service and Fine Print API microservices, transforming static Google Spreadsheet workflows into dynamic API-driven processes.</li>
-              <li>Enhanced Deal Creation Tool with new features and performance improvements, supporting thousands of daily transactions.</li>
+              <li>Built merchant platforms and microservices powering thousands of global Groupon deals with automated fulfillment.</li>
+              <li>Shipped HIPAA-compliant OCR pipelines at Fathom Health that processed 900K+ medical records into ML-ready datasets.</li>
+              <li>Created offline conversational AI for Invento’s Mitra robot, enabling context-aware experiences in hospitality deployments.</li>
             </ul>
-            <button class="see-more-btn" data-modal="groupon">See More Details</button>
           </article>
         </section>
 
@@ -431,29 +380,22 @@
           </header>
           <article class="experience-item education-item">
             <div class="experience-heading">
-              <div class="company-header">
-                <img src="assets/logos/gatech-logo.png" alt="Georgia Tech" class="company-logo" />
-                <div>
-                  <h3>Georgia Institute of Technology</h3>
-                  <p class="role">MS Computer Science · AI / Machine Learning</p>
-                </div>
+              <div>
+                <h3>Georgia Institute of Technology</h3>
+                <p class="role">MS Computer Science · AI / Machine Learning</p>
               </div>
               <span class="experience-date">Aug 2017 – May 2019 · Atlanta, USA</span>
             </div>
-            <p class="education-note">Deep Learning · Computer Vision · Natural Language Processing · Reinforcement Learning · Graduate Teaching Assistant for Deep Learning (CS7643)</p>
+            <p class="education-note">Deep Learning · Computer Vision · Natural Language Processing · Reinforcement Learning</p>
           </article>
           <article class="experience-item education-item">
             <div class="experience-heading">
-              <div class="company-header">
-                <img src="assets/logos/nit-logo.png" alt="NIT Trichy" class="company-logo" />
-                <div>
-                  <h3>National Institute of Technology, Tiruchirappalli</h3>
-                  <p class="role">B.Tech Computer Science &amp; Engineering</p>
-                </div>
+              <div>
+                <h3>National Institute of Technology, Tiruchirappalli</h3>
+                <p class="role">B.Tech Computer Science &amp; Engineering</p>
               </div>
               <span class="experience-date">Aug 2010 – Jun 2014 · Tiruchirappalli, India</span>
             </div>
-            <p class="education-note">ACM ICPC Regional Finalist · Ranked #30 out of 300+ teams</p>
           </article>
         </section>
 
@@ -718,14 +660,6 @@
           <span class="terminal-command-text">$ exit</span>
         </div>
       </footer>
-    </div>
-
-    <!-- Modal Container -->
-    <div id="modal-container" class="modal-container">
-      <div class="modal-content">
-        <button class="modal-close" aria-label="Close modal">&times;</button>
-        <div id="modal-body"></div>
-      </div>
     </div>
 
     <script src="assets/script.js" defer></script>
