@@ -21,6 +21,25 @@ const gridToFilename = (px, py) =>
 const buildImagePath = (basePath, filename) =>
   `${basePath.endsWith("/") ? basePath : `${basePath}/`}${filename}`;
 
+const resolveBasePath = (image, basePath) =>
+  basePath || image?.dataset.gazeBase || "assets/images/gaze_images/";
+
+const resolveDefaultSrc = (image) =>
+  image?.dataset.gazeDefault ||
+  image?.getAttribute("data-gaze-default") ||
+  image?.getAttribute("src") ||
+  FALLBACK_SRC;
+
+const buildGridSources = (basePath) => {
+  const sources = [];
+  for (let px = P_MIN; px <= P_MAX; px += STEP) {
+    for (let py = P_MIN; py <= P_MAX; py += STEP) {
+      sources.push(buildImagePath(basePath, gridToFilename(px, py)));
+    }
+  }
+  return sources;
+};
+
 const getNormalizedCoordinates = (clientX, clientY, rect) => {
   const centerX = rect.left + rect.width / 2;
   const centerY = rect.top + rect.height / 2;
@@ -34,6 +53,19 @@ const preloadImage = (src) => {
   img.src = src;
 };
 
+const preloadImageAsync = (src) =>
+  new Promise((resolve) => {
+    const img = new Image();
+    img.onload = resolve;
+    img.onerror = resolve;
+    img.src = src;
+  });
+
+const preloadGazeImages = (basePath, defaultSrc) => {
+  const sources = new Set([defaultSrc, ...buildGridSources(basePath)]);
+  return Promise.allSettled(Array.from(sources, preloadImageAsync));
+};
+
 function initGazeTracking({ container, image, basePath }) {
   if (!container || !image) {
     return;
@@ -44,12 +76,8 @@ function initGazeTracking({ container, image, basePath }) {
   let lastImageSrc = "";
   let isActive = true;
   let idleTimeoutId = null;
-  const activeBasePath = basePath || image.dataset.gazeBase || "assets/images/gaze_images/";
-  const defaultSrc =
-    image.dataset.gazeDefault ||
-    image.getAttribute("data-gaze-default") ||
-    image.getAttribute("src") ||
-    FALLBACK_SRC;
+  const activeBasePath = resolveBasePath(image, basePath);
+  const defaultSrc = resolveDefaultSrc(image);
 
   const clearIdleTimer = () => {
     if (idleTimeoutId !== null) {
@@ -195,7 +223,11 @@ const bootstrap = () => {
   if (!container || !image) {
     return;
   }
-  initGazeTracking({ container, image });
+  const activeBasePath = resolveBasePath(image);
+  const defaultSrc = resolveDefaultSrc(image);
+  preloadGazeImages(activeBasePath, defaultSrc).finally(() => {
+    initGazeTracking({ container, image, basePath: activeBasePath });
+  });
 };
 
 if (document.readyState === "loading") {
