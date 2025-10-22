@@ -1,0 +1,31 @@
+/* Cursor animation styles */
+.cursor-spark {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent, #47cfeb);
+  pointer-events: none;
+  animation: cursor-sparkle 2s linear forwards;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 6px var(--accent, #47cfeb);
+}
+
+@keyframes cursor-sparkle {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5);
+    filter: blur(2px);
+  }
+}
+
