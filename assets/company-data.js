@@ -1,5 +1,5 @@
 // Company details data for portfolio website
-const companyDetails = {
+window.companyDetails = {
   brahmasumm: {
     title: "Brahmasumm AI - AI Engineer",
     content: `

@@ -8,12 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Show modal function
   function showModal(company) {
     // Ensure companyDetails is available
-    if (typeof companyDetails === 'undefined') {
+    const details = (window.companyDetails || {})[company];
+    
+    if (!window.companyDetails) {
       console.error("companyDetails data not loaded");
       return;
     }
 
-    const details = companyDetails[company];
     if (details) {
       modalBody.innerHTML = `<h2>${details.title}</h2>${details.content}`;
       modalContainer.classList.add("active");
