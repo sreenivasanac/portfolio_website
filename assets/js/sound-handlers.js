@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- Sound Integration ---
+  // // Initialize audio context immediately to allow early playback (e.g. hover)
+  // // Browsers might still block 'resume' until interaction, but we try our best.
+  // if (window.soundManager) {
+  //   window.soundManager.init();
+  // }
 
-  // Initialize audio context immediately to allow early playback (e.g. hover)
-  // Browsers might still block 'resume' until interaction, but we try our best.
-  if (window.soundManager) {
-    window.soundManager.init();
-  }
-
-  // Optional: Try to resume audio context on any user interaction
+  // Create / resume audio context only after explicit user interaction
+  // to comply with browser autoplay policies.
   const unlockAudio = () => {
     if (window.soundManager) {
         window.soundManager.resume().catch(e => console.log("Audio resume failed:", e));
