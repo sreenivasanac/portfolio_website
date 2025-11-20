@@ -366,13 +366,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = emailCopyBtn.dataset.email;
       try {
         await navigator.clipboard.writeText(email);
-        
+
         // Update button text temporarily
         const textSpan = emailCopyBtn.querySelector("span:nth-child(2)");
         const originalText = textSpan.textContent;
         textSpan.textContent = "Copied!";
         emailCopyBtn.style.backgroundColor = "rgba(16, 185, 129, 0.1)";
-        
+
         // Reset after 2 seconds
         setTimeout(() => {
           textSpan.textContent = originalText;
@@ -436,6 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         element.textContent += original.charAt(index);
+        // Removed typing sound to avoid noise during scroll-triggered animations
         index += 1;
         const delay = 28 + Math.random() * 42;
         command.timeoutId = window.setTimeout(step, delay);
@@ -546,4 +547,118 @@ document.addEventListener("DOMContentLoaded", () => {
       motionPreference.addListener(handleMotionPreferenceChange);
     }
   }
+
+  // Scroll Reveal Animation
+  const revealElements = document.querySelectorAll(".reveal");
+  if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px",
+      }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  }
+
+  // Hacker Text Scramble Effect
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const scrambleElements = document.querySelectorAll(".hacker-text, .scramble-text, .project-text h3, .company-header h3 a");
+
+  scrambleElements.forEach((element) => {
+    // Store original text once to ensure integrity
+    element.dataset.originalText = element.innerText;
+
+    element.addEventListener("mouseover", (event) => {
+      let iterations = 0;
+      const originalText = element.dataset.originalText;
+
+      // Clear any existing interval to prevent race conditions
+      if (element.dataset.scrambleInterval) {
+        clearInterval(Number(element.dataset.scrambleInterval));
+      }
+
+      const interval = setInterval(() => {
+        event.target.innerText = originalText
+          .split("")
+          .map((letter, index) => {
+            if (index < iterations) {
+              return originalText[index];
+            }
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("");
+
+        if (iterations >= originalText.length) {
+          clearInterval(interval);
+          event.target.innerText = originalText; // Ensure final text is correct
+          delete element.dataset.scrambleInterval;
+        }
+
+        iterations += 1; // Faster: 1 character per 30ms
+      }, 30);
+
+      element.dataset.scrambleInterval = interval;
+    });
+
+    // Reset immediately on mouse leave
+    element.addEventListener("mouseleave", (event) => {
+      if (element.dataset.scrambleInterval) {
+        clearInterval(Number(element.dataset.scrambleInterval));
+        delete element.dataset.scrambleInterval;
+      }
+      event.target.innerText = element.dataset.originalText;
+    });
+  });
+
+  // --- Sound Integration ---
+
+  // Initialize audio context on first user interaction
+  const initAudio = () => {
+    if (window.soundManager) {
+      window.soundManager.init();
+      window.soundManager.resume();
+    }
+    document.removeEventListener('click', initAudio);
+    document.removeEventListener('keydown', initAudio);
+  };
+
+  document.addEventListener('click', initAudio);
+  document.addEventListener('keydown', initAudio);
+
+  // Scroll guard to prevent accidental hover sounds during scroll
+  let isScrolling = false;
+  let scrollTimeout;
+
+  document.addEventListener('scroll', () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 150);
+  }, { passive: true });
+
+  // Attach hover and click sounds to interactive elements
+  const interactiveSelector = 'a, button, .nav-link, .hero-pill, .project-link, .see-more-link';
+  const interactiveElements = document.querySelectorAll(interactiveSelector);
+
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      if (isScrolling) return; // Don't play sound if scrolling
+      if (window.soundManager) window.soundManager.playHoverSound();
+    });
+
+    el.addEventListener('click', () => {
+      if (window.soundManager) window.soundManager.playClickSound();
+    });
+  });
 });
