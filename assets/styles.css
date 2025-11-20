@@ -25,6 +25,8 @@
 
   --accent-secondary: #ffd700;
   /* HUD Gold */
+  --accent-success: #00ff9d;
+  /* Action Green */
   --accent-alert: #ff3333;
   /* System Alert Red */
   --accent-pink: #d500f9;
@@ -1212,7 +1214,7 @@ h6 {
 }
 
 .experience-item ul li {
-  max-width: 72ch;
+  max-width: 120ch;
 }
 
 .education-note {
@@ -1491,15 +1493,29 @@ h6 {
 }
 
 .project-link-live {
-  background: var(--accent-pink);
-  border-color: var(--accent-pink);
-  color: #f9f1ff;
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
 }
 
 .project-link-live:hover,
 .project-link-live:focus-visible {
-  background: #c47cf0;
-  border-color: #c47cf0;
+  background: rgba(255, 215, 0, 0.25);
+  border-color: #ffe44d;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+.project-link-code {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--accent-secondary);
+  color: var(--accent-secondary);
+}
+
+.project-link-code:hover,
+.project-link-code:focus-visible {
+  background: rgba(255, 215, 0, 0.25);
+  border-color: #ffe44d;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
 }
 
 .project-chip {
@@ -2595,7 +2611,7 @@ h6 {
 }
 
 .contact-panel-btn.accent {
-  background: transparent;
+  background: rgba(0, 255, 157, 0.05);
   color: var(--accent-success);
   border: 1px solid var(--accent-success);
 }

@@ -17,6 +17,12 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/cursor_animation.css" />
   <script src="assets/sounds.js" defer></script>
+  <script src="assets/company-data.js" defer></script>
+  <script src="assets/animations.js" defer></script>
+  <script src="assets/interactions.js" defer></script>
+  <script src="assets/modal.js" defer></script>
+  <script src="assets/navigation.js" defer></script>
+  <script src="assets/sound-handlers.js" defer></script>
 </head>
 
 <body>
@@ -663,7 +669,6 @@
                 <div class="project-text">
                   <div class="project-header-row">
                     <h3>Namesmith Agents</h3>
-                    <span class="project-status">SYSTEM ONLINE</span>
                   </div>
                   <p class="project-description">
                     Autonomous multi-agent system that analyzes domain markets end-to-end—from discovery and scoring to
@@ -687,7 +692,7 @@
                     </svg>
                     <span>Demo</span>
                   </a>
-                  <a href="https://github.com/sreenivasanac/namesmith_agents" class="project-link project-link-outline"
+                  <a href="https://github.com/sreenivasanac/namesmith_agents" class="project-link project-link-code"
                     target="_blank" rel="noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
@@ -755,6 +760,56 @@
 
             <article class="project-card reveal">
               <div class="project-media project-media-image">
+                <img src="assets/images/projects/file_vyasa_demo.png" alt="File Vyasa Demo" loading="lazy"
+                  class="project-image-contain" />
+              </div>
+              <div class="project-content">
+                <div class="project-text">
+                  <h3>File organiser AI Agent</h3>
+                  <p class="project-description">
+                    Desktop assistant that understands local files in file system, proposes intelligent folder hierarchies, and executes safe move/rename operations with transparent human oversight in an Agentic manner.
+                  </p>
+                  <p class="project-subtext">Privacy-first architecture with Tauri, Agno agents, and safe execution planning.</p>
+                </div>
+                <div class="project-tags">
+                  <span class="project-tag">Agentic Workflow</span>
+                  <span class="project-tag">Document understanding</span>
+                  <span class="project-tag">Agentic Workflow</span>
+                  <span class="project-tag">Local LLM</span>
+                  <span class="project-tag">Agno Framework</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/sreenivasanac/file-vyasa" class="project-link project-link-code"
+                    target="_blank" rel="noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
+                      aria-hidden="true">
+                      <circle cx="12" cy="18" r="3"></circle>
+                      <circle cx="6" cy="6" r="3"></circle>
+                      <circle cx="18" cy="6" r="3"></circle>
+                      <path d="M18 9v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9"></path>
+                      <path d="M12 12v3"></path>
+                    </svg>
+                    <span>Code</span>
+                  </a>
+                  <a href="https://github.com/sreenivasanac/file-vyasa/blob/main/agentic_development_docs/project_design_plan/0_filevyasa_design_plan_v1.md"
+                    class="project-link project-link-ghost" target="_blank" rel="noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
+                      aria-hidden="true">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <path d="M16 13H8"></path>
+                      <path d="M16 17H8"></path>
+                    </svg>
+                    <span>Design Doc</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card reveal">
+              <div class="project-media project-media-image">
                 <img src="assets/images/projects/constella.png" alt="Constella clustering visualization" loading="lazy"
                   class="project-image-contain" />
               </div>
@@ -773,7 +828,7 @@
                   <span class="project-tag">UMAP</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/sreenivasanac/constella" class="project-link project-link-outline"
+                  <a href="https://github.com/sreenivasanac/constella" class="project-link project-link-code"
                     target="_blank" rel="noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
@@ -812,7 +867,7 @@
                   <span class="project-tag">PostgreSQL</span>
                 </div>
                 <div class="project-links">
-                  <a href="https://github.com/sreenivasanac/quora_analysis" class="project-link project-link-outline"
+                  <a href="https://github.com/sreenivasanac/quora_analysis" class="project-link project-link-code"
                     target="_blank" rel="noreferrer">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"
@@ -836,7 +891,7 @@
               </div>
               <div class="project-content">
                 <div class="project-text">
-                  <h3>Longevity Coach - Health AI</h3>
+                  <h3>Longevity Coach AI</h3>
                   <p class="project-description">
                     Longevity Coach grounded in research articles, delivering evidence-backed health guidance for user's
                     questions.
@@ -1254,7 +1309,7 @@
                   <span>Send Email (Opens Email Client)</span>
                 </a>
                 <a href="https://calendar.app.google/MynJqdZbzM6Z7JfPA" target="_blank" rel="noreferrer"
-                  class="contact-panel-btn accent">
+                  class="contact-panel-btn outline">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     aria-hidden="true">
@@ -1266,7 +1321,7 @@
                   <span>Book a 15-min Call</span>
                 </a>
                 <a href="https://www.linkedin.com/in/sreenivasan-ac/" target="_blank" rel="noreferrer"
-                  class="contact-panel-btn outline">
+                  class="contact-panel-btn accent">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     aria-hidden="true">
@@ -1323,7 +1378,12 @@
   </div>
 
   <script src="assets/portrait_gaze.js"></script>
-  <script src="assets/script.js" defer></script>
+  <script src="assets/company-data.js" defer></script>
+  <script src="assets/navigation.js" defer></script>
+  <script src="assets/modal.js" defer></script>
+  <script src="assets/animations.js" defer></script>
+  <script src="assets/interactions.js" defer></script>
+  <script src="assets/sound-handlers.js" defer></script>
   <script src="assets/cursor_animation.js" defer></script>
   <script src="assets/particles.js" defer></script>
 </body>
