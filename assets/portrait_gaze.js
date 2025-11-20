@@ -236,4 +236,4 @@ if (document.readyState === "loading") {
   bootstrap();
 }
 
-export { initGazeTracking, quantizeToGrid, gridToFilename };
+
