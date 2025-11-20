@@ -90,8 +90,12 @@ body::before {
 .background-gradient {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 12% 18%, rgba(79, 153, 218, 0.08), transparent 60%),
-    radial-gradient(circle at 84% 12%, rgba(167, 120, 255, 0.06), transparent 52%);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(79, 153, 218, 0.12), transparent 60%),
+    radial-gradient(circle at 84% 12%, rgba(167, 120, 255, 0.12), transparent 52%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: auto, auto, 100% 88px, 88px 100%;
   z-index: -1;
 }
 
@@ -308,6 +312,36 @@ a {
   border-color: #47cfeb;
 }
 
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card::before {
+  border-top: 1px solid rgba(71, 207, 235, 0.5);
+  border-left: 1px solid rgba(71, 207, 235, 0.35);
+  clip-path: polygon(0 0, 14px 0, 0 14px);
+}
+
+.card::after {
+  border-bottom: 1px solid rgba(71, 207, 235, 0.5);
+  border-right: 1px solid rgba(71, 207, 235, 0.35);
+  clip-path: polygon(100% 100%, calc(100% - 14px) 100%, 100% calc(100% - 14px));
+}
+
+.card:hover::before,
+.card:hover::after,
+.card:focus-within::before,
+.card:focus-within::after {
+  opacity: 1;
+}
+
 .hero-card {
   padding: 18px 26px 24px;
 }
@@ -478,8 +512,8 @@ a {
 .avatar {
   width: 160px;
   height: 160px;
-  border: 2px solid var(--accent);
-  box-shadow: 0 0 20px var(--accent-dim);
+  border: 0.1px solid var(--accent);
+  box-shadow: 0 0 18px var(--accent-dim);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -490,6 +524,18 @@ a {
   text-transform: uppercase;
   background: rgba(10, 12, 16, 0.8);
   color: var(--accent);
+  animation: avatar-pulse 4s ease-in-out infinite;
+}
+
+@keyframes avatar-pulse {
+  0%, 100% {
+    box-shadow: 0 0 18px var(--accent-dim);
+    border-color: var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+    border-color: #80f7ff;
+  }
 }
 
 
@@ -597,6 +643,7 @@ a {
 .hero-text {
   margin: 0;
   color: #ffffff;
+  max-width: 70ch;
 }
 
 .hero-controls {
@@ -822,6 +869,10 @@ a {
   padding-left: 20px;
   display: grid;
   gap: 10px;
+}
+
+.experience-item ul li {
+  max-width: 72ch;
 }
 
 .education-note {

@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navPath.classList.toggle("path-active", suffix.length > 0);
   };
 
-  const setActiveLink = (targetId) => {
+  const setActiveLink = (targetId, opts = {}) => {
     navLinks.forEach((link) => {
       const isActive = link.dataset.section === targetId;
       link.classList.toggle("active", isActive);
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.history.replaceState(null, "", `#${targetId}`);
       }
 
-      setActiveLink(targetId);
+      setActiveLink(targetId, { fromNav: true });
     });
   });
 
