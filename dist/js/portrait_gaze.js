@@ -1,8 +1,8 @@
 const P_MIN = -15;
 const P_MAX = 15;
 const STEP = 3;
-const SIZE = 256;
-const FALLBACK_SRC = "assets/gaze_images/gaze_px0p0_py0p0_256.webp";
+const SIZE = 160;
+const FALLBACK_SRC = "assets/gaze_images/gaze_px0p0_py0p0_160.webp";
 const IDLE_TIMEOUT_MS = 1100;
 
 const formatCoord = (value) => value.toFixed(1).replace("-", "m").replace(".", "p");
