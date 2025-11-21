@@ -6,7 +6,7 @@ import noModulePlugin from './vite-plugin-no-module.js';
 
 export default defineConfig({
   plugins: [htmlInject(), noModulePlugin()],
-  base: './',
+  base: '/portfolio_website/',
   css: {
     postcss: {
       plugins: [postcssImport()]
