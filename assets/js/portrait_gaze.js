@@ -132,6 +132,10 @@ function initGazeTracking({ container, image, basePath }) {
   };
 
   const scheduleUpdate = (clientX, clientY) => {
+    // Check animation disabled state
+    if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) {
+        return;
+    }
     if (!isActive) {
       return;
     }
@@ -140,6 +144,7 @@ function initGazeTracking({ container, image, basePath }) {
       rafId = window.requestAnimationFrame(processPendingPoint);
     }
   };
+
 
   const handlePointerMove = (event) => {
     resetIdleTimer();
@@ -197,6 +202,16 @@ function initGazeTracking({ container, image, basePath }) {
   window.addEventListener("touchmove", handleTouchMove, { passive: true });
   window.addEventListener("mouseout", handleWindowMouseOut);
   observer.observe(container);
+  
+  // Listen for settings changes
+  window.addEventListener('settingsChanged', (e) => {
+    if (!e.detail.animationEnabled) {
+        resetToDefault();
+    } else {
+        // When re-enabled, snap to center or mouse
+        resetToCenter();
+    }
+  });
 
   const centerFilename = gridToFilename(0, 0);
   preloadImage(buildImagePath(activeBasePath, centerFilename));

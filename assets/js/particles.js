@@ -20,6 +20,9 @@ const particleCount = 60; // Number of particles
 const connectionDistance = 150;
 const mouseDistance = 200;
 
+let animationFrameId;
+let isAnimating = true;
+
 let mouse = { x: null, y: null };
 
 window.addEventListener('mousemove', (e) => {
@@ -28,6 +31,38 @@ window.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('resize', resizeCanvas);
+
+// Handle visibility change (tab switch)
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        stopAnimation();
+    } else {
+        startAnimation();
+    }
+});
+
+// Handle settings change
+window.addEventListener('settingsChanged', (e) => {
+    if (e.detail.animationEnabled) {
+        canvas.style.display = 'block';
+        startAnimation();
+    } else {
+        stopAnimation();
+        canvas.style.display = 'none';
+    }
+});
+
+function checkInitialState() {
+     if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) {
+        canvas.style.display = 'none';
+        isAnimating = false;
+     }
+     // Check reduced motion
+     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+     if (motionPreference.matches) {
+        isAnimating = false;
+     }
+}
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -100,6 +135,8 @@ function initParticles() {
 }
 
 function animate() {
+    if (!isAnimating) return;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Update and draw particles
@@ -123,9 +160,27 @@ function animate() {
             }
         }
     }
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
+}
+
+function startAnimation() {
+    if (!isAnimating) {
+        if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) return;
+        isAnimating = true;
+        animate();
+    }
+}
+
+function stopAnimation() {
+    isAnimating = false;
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+    }
 }
 
 // Initialize
 resizeCanvas();
-animate();
+checkInitialState();
+if (isAnimating) {
+    animate();
+}

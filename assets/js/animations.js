@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let commands = []; // Lifted for global access
+
   // Terminal command typewriter animation
   const terminalCommandTextElements = Array.from(document.querySelectorAll(".terminal-command-text"));
   if (terminalCommandTextElements.length > 0) {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const commands = terminalCommandTextElements
-      .map((element) => ({
+    commands = terminalCommandTextElements
+      .map((element, idx) => ({
+        id: idx,
         element,
         original: element.textContent ?? "",
         animated: false,
@@ -62,6 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (command.animated) {
           return;
         }
+
+        // Check global settings - if animations disabled, show text immediately and mark animated
+        if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) {
+             command.element.textContent = command.original;
+             command.element.classList.remove("terminal-typing");
+             command.element.classList.add("terminal-caret"); 
+             command.animated = true;
+             return;
+        }
+
         command.animated = true;
         typeCommand(command);
       };
@@ -193,6 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
     element.dataset.originalText = element.innerText;
 
     element.addEventListener("mouseover", (event) => {
+      // CHECK IF ANIMATION DISABLED
+      if (document.body.classList.contains('disable-animation')) return;
+
       // Stop propagation to prevent global hover sounds from firing
       event.stopPropagation();
       
@@ -242,5 +258,27 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       event.target.innerText = element.dataset.originalText;
     });
+  });
+
+  // Listen for settings changes to force-finish animations if needed
+  window.addEventListener('settingsChanged', (e) => {
+    if (!e.detail.animationEnabled) {
+      // Kill running typewriters
+      if (commands.length > 0) {
+         commands.forEach(cmd => {
+            if(cmd.timeoutId) clearTimeout(cmd.timeoutId);
+            cmd.element.textContent = cmd.original;
+            cmd.element.classList.remove('terminal-typing');
+         });
+      }
+      // Kill running scrambles
+      scrambleElements.forEach(el => {
+         if(el.dataset.scrambleInterval) {
+             clearInterval(Number(el.dataset.scrambleInterval));
+             delete el.dataset.scrambleInterval;
+             el.innerText = el.dataset.originalText;
+         }
+      });
+    }
   });
 });

@@ -1260,6 +1260,257 @@ h6 {
   border: 1px solid var(--border-subtle);
 }
 
+/* =========================================
+   System Control Panel (HUD Style)
+   ========================================= */
+.system-tray {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  gap: 12px;
+  z-index: 9999;
+  background: rgba(8, 10, 15, 0.9);
+  border: 1px solid var(--border-strong);
+  padding: 8px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .system-tray {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px;
+    gap: 8px;
+  }
+}
+
+.sys-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--muted-foreground);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sys-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-dim);
+  background: rgba(0, 243, 255, 0.05);
+}
+
+.sys-btn.active {
+  background: rgba(0, 243, 255, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 5px var(--accent-dim);
+}
+
+.sys-btn .icon-off { display: none; }
+.sys-btn .icon-on { display: flex; }
+
+/* Disabled / Muted States */
+.sys-btn.muted .icon-on,
+.sys-btn.disabled .icon-on { display: none; }
+
+.sys-btn.muted .icon-off,
+.sys-btn.disabled .icon-off { display: flex; }
+
+.sys-btn.muted,
+.sys-btn.disabled {
+  color: var(--accent-alert); /* Red for disabled/muted */
+  border-color: rgba(255, 51, 51, 0.3);
+}
+
+.sys-btn.muted:hover,
+.sys-btn.disabled:hover {
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.2);
+}
+
+/* System Tray Tooltips & Notifications */
+.sys-btn-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sys-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: rgba(5, 8, 12, 0.95);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: "JetBrains Mono", monospace;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10000;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sys-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--accent) transparent transparent transparent;
+}
+
+.sys-btn-wrapper:hover .sys-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Shortcut Notification Popup */
+.settings-notification {
+  position: absolute;
+  bottom: calc(100% + 20px);
+  right: 0;
+  width: max-content;
+  max-width: 240px;
+  background: rgba(5, 8, 12, 0.95);
+  border: 1px solid var(--accent-secondary);
+  color: var(--foreground);
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-family: "JetBrains Mono", monospace;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10001;
+  pointer-events: none;
+}
+
+.settings-notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.settings-notification::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--accent-secondary) transparent transparent transparent;
+}
+
+.settings-notification strong {
+  color: var(--accent-secondary);
+  display: block;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   Disable Animation Overrides
+   ========================================= */
+
+/* 1. Scanline Effect (Body) */
+body.disable-animation::after {
+  animation: none !important;
+  opacity: 0 !important; /* Hide scanlines */
+}
+
+/* 2. Radar Scan (Project Cards) */
+body.disable-animation .project-card::after,
+body.disable-animation .project-card:hover::after {
+  animation: none !important;
+  opacity: 0 !important;
+  background: none !important;
+}
+
+/* 3. Light Sweep (Skills & Tags) */
+body.disable-animation .tag-row span::after, 
+body.disable-animation .project-tag::after,
+body.disable-animation .tag-row span:hover::after, 
+body.disable-animation .project-tag:hover::after {
+  display: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* 4. Skill Group Radar Scan */
+body.disable-animation .skill-group::before,
+body.disable-animation .skill-group:hover::before {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* 5. Avatar Pulse */
+body.disable-animation .avatar {
+  animation: none !important;
+  box-shadow: 0 0 18px var(--accent-dim) !important;
+  border-color: var(--accent) !important;
+}
+
+/* 6. Glitch Effect */
+body.disable-animation .glitch::before, 
+body.disable-animation .glitch::after {
+  animation: none !important;
+  display: none !important;
+}
+
+/* 7. Hero Name Text (if animated) */
+body.disable-animation .hero-name-text {
+  animation: none !important;
+}
+
+/* 8. Terminal Caret Blinking and Typing */
+body.disable-animation .terminal-command-text.terminal-typing::after,
+body.disable-animation .terminal-command-text.terminal-caret::after {
+  animation: none !important;
+  opacity: 0 !important; /* Hide the caret/typing block completely */
+}
+
+/* 9. Reveal Animation (make everything visible immediately) */
+body.disable-animation .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+/* 10. Hero Card Scanline Sweep */
+body.disable-animation .hero-card::before {
+  animation: none !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
 .projects-title-icon svg {
   width: 18px;
   height: 18px;
