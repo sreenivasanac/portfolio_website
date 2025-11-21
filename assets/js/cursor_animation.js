@@ -11,12 +11,22 @@ const CursorAnimation = {
     const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionPreference.matches) {
       this.isEnabled = false;
-      return;
+      // return; // Don't return, we might need to enable it later via settings
+    }
+
+    // Check for global settings
+    if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) {
+      this.isEnabled = false;
     }
 
     // Listen for motion preference changes
     motionPreference.addEventListener("change", (e) => {
-      this.isEnabled = !e.matches;
+      this.isEnabled = !e.matches && (!window.SettingsManager || window.SettingsManager.state.animationEnabled);
+    });
+
+    // Listen for custom settings changes
+    window.addEventListener('settingsChanged', (e) => {
+      this.isEnabled = e.detail.animationEnabled && !motionPreference.matches;
     });
 
     // Add mouse move listener with throttling

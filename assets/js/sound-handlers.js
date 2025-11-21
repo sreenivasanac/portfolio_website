@@ -34,10 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { passive: true });
 
   // Attach hover and click sounds to interactive elements
-  const interactiveSelector = 'a, button, .nav-link, .hero-pill, .project-link, .see-more-link';
+  // Exclude .see-more-link directly in the selector or filter it out
+  const interactiveSelector = 'a:not(.see-more-link), button:not(.see-more-link), .nav-link, .hero-pill, .project-link';
   const interactiveElements = document.querySelectorAll(interactiveSelector);
 
   interactiveElements.forEach(el => {
+    // Double check for safety
+    if (el.classList.contains('see-more-link')) return;
+    
+    // Exclude skill chips
+    if (el.classList.contains('project-tag') || el.closest('.tag-row')) return;
+    
+    // Exclude company headers (text scrambling)
+    if (el.closest('.company-header')) return;
+
     el.addEventListener('mouseenter', () => {
       if (isScrolling) return; // Don't play sound if scrolling
       if (window.soundManager) window.soundManager.playHoverSound();

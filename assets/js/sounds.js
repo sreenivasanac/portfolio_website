@@ -4,6 +4,12 @@ class SoundManager {
         this.masterGain = null;
         this.isMuted = false;
         this.initialized = false;
+        this.lastTypingTime = 0;
+        this.TYPING_THROTTLE_MS = 60; // Min 60ms between sounds
+        this.activeTypingSource = null;
+        this.typingSessionEndTime = 0;
+        this.TYPING_COOLDOWN_MS = 3000; // 3 seconds cooldown after typing ends
+        this.sessionTimeout = null;
     }
 
     init() {
@@ -97,6 +103,53 @@ class SoundManager {
 
         osc.start(t);
         osc.stop(t + 0.03);
+    }
+
+    playScanSound() {
+        if (!this.initialized || this.isMuted) return;
+        this.resume();
+
+        const audio = new Audio('assets/sounds/sci_fi_scanner_3.wav');
+        audio.volume = this.masterGain.gain.value;
+        audio.play().catch(e => console.error("Error playing scanning sound:", e));
+    }
+
+    playElectricTypingSound(sourceId) {
+        if (!this.initialized || this.isMuted) return;
+
+        const now = Date.now();
+
+        // Logic for "One at a time" and "Cooldown"
+        // If there is an active source, and it's not this one, reject.
+        if (this.activeTypingSource && this.activeTypingSource !== sourceId) {
+            return;
+        }
+
+        // If no active source, check cooldown
+        if (!this.activeTypingSource) {
+            if (now - this.typingSessionEndTime < this.TYPING_COOLDOWN_MS) {
+                return; // In cooldown
+            }
+            // Start new session
+            this.activeTypingSource = sourceId;
+        }
+
+        // Reset session timeout (auto-release lock if silence for 500ms)
+        if (this.sessionTimeout) clearTimeout(this.sessionTimeout);
+        this.sessionTimeout = setTimeout(() => {
+            this.activeTypingSource = null;
+            this.typingSessionEndTime = Date.now();
+        }, 500);
+
+        // Prevent stacking within the same session: only play if enough time passed
+        if (now - this.lastTypingTime < this.TYPING_THROTTLE_MS) return;
+        
+        this.lastTypingTime = now;
+
+        // Use the existing sound file
+        const audio = new Audio('assets/sounds/sci_fi_beep_electric.wav');
+        audio.volume = 0.15; // Subtle volume
+        audio.play().catch(() => {});
     }
 }
 
