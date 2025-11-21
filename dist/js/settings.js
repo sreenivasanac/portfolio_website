@@ -131,8 +131,8 @@ const SettingsManager = {
                 </button>
             </div>
             <div id="settings-notification" class="settings-notification">
-                <strong>Shortcuts</strong>
-                Use Shift + M if you want to disable Sound and Animation
+                <strong> Sound 🔇 &  Animation ✨ has been Disabled 🟥</strong>
+                Re-enable Sound & Animation using the buttons below 👇 or press <kbd>Shift + M</kbd>
             </div>
         `;
         document.body.appendChild(tray);
@@ -145,10 +145,15 @@ const SettingsManager = {
         this.notificationScheduled = true;
 
         setTimeout(() => {
-            if (this.state.animationEnabled) {
+            // Auto-disable animations and sounds after 22 seconds
+            if (this.state.animationEnabled || this.state.soundEnabled) {
+                this.state.soundEnabled = false;
+                this.state.animationEnabled = false;
+                this.saveState();
+                this.applyState();
                 this.showNotification();
             }
-        }, 20000);
+        }, 22000);
     },
 
     showNotification() {
@@ -157,10 +162,10 @@ const SettingsManager = {
 
         notification.classList.add('show');
         
-        // Disappear after 6 seconds
+        // Disappear after 13 seconds
         setTimeout(() => {
             notification.classList.remove('show');
-        }, 6000);
+        }, 13000);
     },
 
     updateUI() {
