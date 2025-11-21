@@ -6,6 +6,10 @@ class SoundManager {
         this.initialized = false;
         this.lastTypingTime = 0;
         this.TYPING_THROTTLE_MS = 60; // Min 60ms between sounds
+        this.activeTypingSource = null;
+        this.typingSessionEndTime = 0;
+        this.TYPING_COOLDOWN_MS = 3000; // 3 seconds cooldown after typing ends
+        this.sessionTimeout = null;
     }
 
     init() {
@@ -110,11 +114,34 @@ class SoundManager {
         audio.play().catch(e => console.error("Error playing scanning sound:", e));
     }
 
-    playElectricTypingSound() {
+    playElectricTypingSound(sourceId) {
         if (!this.initialized || this.isMuted) return;
 
         const now = Date.now();
-        // Prevent stacking: only play if enough time passed
+
+        // Logic for "One at a time" and "Cooldown"
+        // If there is an active source, and it's not this one, reject.
+        if (this.activeTypingSource && this.activeTypingSource !== sourceId) {
+            return;
+        }
+
+        // If no active source, check cooldown
+        if (!this.activeTypingSource) {
+            if (now - this.typingSessionEndTime < this.TYPING_COOLDOWN_MS) {
+                return; // In cooldown
+            }
+            // Start new session
+            this.activeTypingSource = sourceId;
+        }
+
+        // Reset session timeout (auto-release lock if silence for 500ms)
+        if (this.sessionTimeout) clearTimeout(this.sessionTimeout);
+        this.sessionTimeout = setTimeout(() => {
+            this.activeTypingSource = null;
+            this.typingSessionEndTime = Date.now();
+        }, 500);
+
+        // Prevent stacking within the same session: only play if enough time passed
         if (now - this.lastTypingTime < this.TYPING_THROTTLE_MS) return;
         
         this.lastTypingTime = now;

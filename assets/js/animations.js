@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           element.textContent += original.charAt(index);
-          // Play electric typing sound - throttled and limited to first 50 chars
-          if (index < 50 && window.soundManager) {
-             window.soundManager.playElectricTypingSound();
+          // Play electric typing sound - throttled and limited to first 20 chars
+          if (index < 20 && window.soundManager) {
+             window.soundManager.playElectricTypingSound(command.id);
           }
           index += 1;
           const delay = 28 + Math.random() * 42;
