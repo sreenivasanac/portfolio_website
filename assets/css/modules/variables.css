@@ -1,0 +1,50 @@
+:root {
+  color-scheme: dark;
+  /* Sci-Fi / HUD Palette - Enhanced */
+  --background: #020204;
+  /* Darker void */
+  --background-alt: #080a0e;
+  --foreground: #e0e6ed;
+  --muted-foreground: #8b9bb4;
+
+  --card-bg: rgba(5, 8, 12, 0.85);
+  --card-border: rgba(0, 243, 255, 0.3);
+  --card-shadow: 0 0 20px rgba(0, 243, 255, 0.08);
+
+  --text-primary: var(--foreground);
+  --text-secondary: var(--muted-foreground);
+
+  --accent: #00f3ff;
+  /* Electric Cyan */
+  --accent-dim: rgba(0, 243, 255, 0.15);
+  --accent-glow: 0 0 15px rgba(0, 243, 255, 0.6);
+
+  --accent-secondary: #ffd700;
+  /* HUD Gold */
+  --accent-success: #00ff9d;
+  /* Action Green */
+  --accent-alert: #ff3333;
+  /* System Alert Red */
+  --accent-pink: #d500f9;
+  /* Cyber Punk Pink */
+  --accent-pink-soft: rgba(213, 0, 249, 0.1);
+  --accent-pink-border: rgba(213, 0, 249, 0.4);
+
+  --tag-bg: rgba(0, 243, 255, 0.08);
+
+  --border-strong: rgba(0, 243, 255, 0.4);
+  --border-subtle: rgba(0, 243, 255, 0.15);
+  --border-hover: #00f3ff;
+
+  --radius-base: 2px;
+  /* More angular for sci-fi */
+  --radius-medium: 4px;
+  --radius-large: 8px;
+  --radius-pill: 999px;
+
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-quick: 0.15s ease-out;
+
+  /* HUD Specifics */
+  --hud-grid-color: rgba(0, 243, 255, 0.03);
+}
