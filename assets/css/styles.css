@@ -730,13 +730,14 @@ h6 {
   text-shadow: 0 0 10px var(--accent-dim);
 }
 
-.hero-name-text {
+.hero-name .hero-name-text {
   display: inline-flex;
   align-items: center;
   position: relative;
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: 0.05em;
+  color: var(--accent-success);
 }
 
 /* Glitch Effect */
@@ -979,7 +980,7 @@ h6 {
 .hero-text {
   margin: 0;
   color: #ffffff;
-  max-width: 70ch;
+  max-width: 110ch;
 }
 
 .hero-controls {
@@ -1270,6 +1271,7 @@ h6 {
   gap: 26px;
 }
 
+/* Combined HUD Corners logic for 4 corners */
 .project-card {
   display: flex;
   flex-direction: column;
@@ -1279,6 +1281,74 @@ h6 {
   overflow: hidden;
   transition: all 0.3s ease;
   position: relative;
+
+  /* 4 Corner Brackets using gradients - Holographic HUD Effect */
+  background-image:
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent)),
+    linear-gradient(var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  
+  /* Initial state: Hidden or very small */
+  background-size: 2px 0px, 0px 2px;
+  
+  /* Positioning for Top-Left, Top-Right, Bottom-Right, Bottom-Left */
+  background-position: 
+    0 0, 0 0,           /* TL vertical, TL horizontal */
+    100% 0, 100% 0,     /* TR vertical, TR horizontal */
+    100% 100%, 100% 100%, /* BR vertical, BR horizontal */
+    0 100%, 0 100%;     /* BL vertical, BL horizontal */
+}
+
+/* Holographic HUD Corners Animation */
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-dim);
+  box-shadow: 0 10px 30px -10px rgba(0, 243, 255, 0.15);
+  
+  /* Expand corners on hover */
+  background-size: 2px 15px, 15px 2px;
+}
+
+/* Radar Scan Effect */
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.1), transparent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+  animation: scan-down 1.5s ease-in-out infinite;
+}
+
+@keyframes scan-down {
+  0% {
+    top: -50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 150%;
+    opacity: 0;
+  }
 }
 
 .project-card::before {
@@ -1577,6 +1647,27 @@ h6 {
   border-radius: 4px;
   position: relative;
   transition: all 0.2s ease;
+  overflow: hidden; /* Crucial for containing the scan */
+  z-index: 1;
+}
+
+/* Radar Scan Effect for Skills */
+.skill-group::before {
+  content: "";
+  position: absolute;
+  top: -100%; /* Start completely out of view */
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 243, 255, 0.15), transparent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.skill-group:hover::before {
+  opacity: 1;
+  animation: scan-down 1.5s ease-in-out infinite;
 }
 
 .skill-group:hover {
@@ -1775,6 +1866,7 @@ h6 {
   gap: 8px;
 }
 
+.tag-row span,
 .project-tag {
   font-size: 0.75rem;
   padding: 4px 8px;
@@ -1783,11 +1875,59 @@ h6 {
   border-radius: 2px;
   font-family: var(--font-mono);
   border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 2px rgba(0, 243, 255, 0);
+  display: inline-flex; 
+  align-items: center;
+  z-index: 1;
 }
 
 .project-card:hover .project-tag {
   border-color: var(--accent-dim);
   box-shadow: 0 0 8px rgba(0, 243, 255, 0.1);
+}
+
+/* Energized Skill Chips Effect */
+.tag-row span:hover,
+.project-tag:hover {
+  border-color: var(--accent);
+  background: rgba(0, 243, 255, 0.12);
+  box-shadow: 0 0 12px rgba(0, 243, 255, 0.4), inset 0 0 5px rgba(0, 243, 255, 0.1);
+  text-shadow: 0 0 5px var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Light Sweep Animation - Fixed */
+.tag-row span::after,
+.project-tag::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%; /* Wider beam */
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: none; /* No transition on reset */
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tag-row span:hover::after,
+.project-tag:hover::after {
+  left: 150%;
+  transition: left 0.7s ease-in-out; /* Smooth sweep */
+  transform: skewX(-25deg);
 }
 
 .achievement-grid {
@@ -1822,8 +1962,7 @@ h6 {
 }
 
 .contact-card {
-  padding: 26px 32px;
-  background: rgba(32, 38, 46, 0.96);
+  padding: 0;
   border: 1px solid rgba(86, 96, 112, 0.35);
   box-shadow: var(--shadow-elevated);
 }
@@ -2254,7 +2393,7 @@ h6 {
   }
 
   .contact-card {
-    padding: 24px;
+    padding: 0;
   }
 
   .contact-terminal {
@@ -2410,7 +2549,7 @@ h6 {
   }
 
   .contact-card {
-    padding: 28px 20px;
+    padding: 0;
   }
 
   .contact-panel {
@@ -2507,7 +2646,6 @@ h6 {
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   padding: 24px;
-  margin-bottom: 32px;
   position: relative;
   overflow: hidden;
 }
