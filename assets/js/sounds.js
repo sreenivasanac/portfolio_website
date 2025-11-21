@@ -4,6 +4,8 @@ class SoundManager {
         this.masterGain = null;
         this.isMuted = false;
         this.initialized = false;
+        this.lastTypingTime = 0;
+        this.TYPING_THROTTLE_MS = 60; // Min 60ms between sounds
     }
 
     init() {
@@ -97,6 +99,30 @@ class SoundManager {
 
         osc.start(t);
         osc.stop(t + 0.03);
+    }
+
+    playScanSound() {
+        if (!this.initialized || this.isMuted) return;
+        this.resume();
+
+        const audio = new Audio('assets/sounds/sci_fi_scanner_3.wav');
+        audio.volume = this.masterGain.gain.value;
+        audio.play().catch(e => console.error("Error playing scanning sound:", e));
+    }
+
+    playElectricTypingSound() {
+        if (!this.initialized || this.isMuted) return;
+
+        const now = Date.now();
+        // Prevent stacking: only play if enough time passed
+        if (now - this.lastTypingTime < this.TYPING_THROTTLE_MS) return;
+        
+        this.lastTypingTime = now;
+
+        // Use the existing sound file
+        const audio = new Audio('assets/sounds/sci_fi_beep_electric.wav');
+        audio.volume = 0.15; // Subtle volume
+        audio.play().catch(() => {});
     }
 }
 

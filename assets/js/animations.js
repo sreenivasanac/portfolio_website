@@ -46,7 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }
 
           element.textContent += original.charAt(index);
-          // Removed typing sound to avoid noise during scroll-triggered animations
+          // Play electric typing sound - throttled and limited to first 50 chars
+          if (index < 50 && window.soundManager) {
+             window.soundManager.playElectricTypingSound();
+          }
           index += 1;
           const delay = 28 + Math.random() * 42;
           command.timeoutId = window.setTimeout(step, delay);
@@ -190,6 +193,16 @@ document.addEventListener("DOMContentLoaded", () => {
     element.dataset.originalText = element.innerText;
 
     element.addEventListener("mouseover", (event) => {
+      // Stop propagation to prevent global hover sounds from firing
+      event.stopPropagation();
+      
+      // Play electric sound on hover start
+      if (window.soundManager && !window.soundManager.isMuted) {
+        const audio = new Audio('assets/sounds/sci_fi_beep_electric.wav');
+        audio.volume = 0.1;
+        audio.play().catch(() => {});
+      }
+
       let iterations = 0;
       const originalText = element.dataset.originalText;
 
