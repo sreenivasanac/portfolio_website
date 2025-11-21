@@ -4,6 +4,14 @@ const STEP = 3;
 const SIZE = 160;
 const FALLBACK_SRC = "assets/gaze_images/gaze_px0p0_py0p0_160.webp";
 const IDLE_TIMEOUT_MS = 1100;
+const TRACKING_DURATION_MS = 6000;
+const COOLDOWN_DURATION_MS = 20000;
+
+const TrackingState = {
+  READY: 'ready',
+  TRACKING: 'tracking',
+  COOLDOWN: 'cooldown'
+};
 
 const formatCoord = (value) => value.toFixed(1).replace("-", "m").replace(".", "p");
 
@@ -76,6 +84,9 @@ function initGazeTracking({ container, image, basePath }) {
   let lastImageSrc = "";
   let isActive = true;
   let idleTimeoutId = null;
+  let trackingState = TrackingState.READY;
+  let trackingTimerId = null;
+  let cooldownTimerId = null;
   const activeBasePath = resolveBasePath(image, basePath);
   const defaultSrc = resolveDefaultSrc(image);
 
@@ -84,6 +95,39 @@ function initGazeTracking({ container, image, basePath }) {
       window.clearTimeout(idleTimeoutId);
       idleTimeoutId = null;
     }
+  };
+
+  const clearTrackingTimers = () => {
+    if (trackingTimerId !== null) {
+      window.clearTimeout(trackingTimerId);
+      trackingTimerId = null;
+    }
+    if (cooldownTimerId !== null) {
+      window.clearTimeout(cooldownTimerId);
+      cooldownTimerId = null;
+    }
+  };
+
+  const startCooldown = () => {
+    trackingState = TrackingState.COOLDOWN;
+    resetToDefault();
+    clearTrackingTimers();
+    cooldownTimerId = window.setTimeout(() => {
+      cooldownTimerId = null;
+      trackingState = TrackingState.READY;
+    }, COOLDOWN_DURATION_MS);
+  };
+
+  const startTracking = () => {
+    if (trackingState !== TrackingState.READY) {
+      return;
+    }
+    trackingState = TrackingState.TRACKING;
+    clearTrackingTimers();
+    trackingTimerId = window.setTimeout(() => {
+      trackingTimerId = null;
+      startCooldown();
+    }, TRACKING_DURATION_MS);
   };
 
   const resetToDefault = () => {
@@ -132,12 +176,17 @@ function initGazeTracking({ container, image, basePath }) {
   };
 
   const scheduleUpdate = (clientX, clientY) => {
-    // Check animation disabled state
     if (window.SettingsManager && !window.SettingsManager.state.animationEnabled) {
         return;
     }
     if (!isActive) {
       return;
+    }
+    if (trackingState === TrackingState.COOLDOWN) {
+      return;
+    }
+    if (trackingState === TrackingState.READY) {
+      startTracking();
     }
     pendingPoint = { x: clientX, y: clientY };
     if (rafId === null) {
@@ -180,6 +229,8 @@ function initGazeTracking({ container, image, basePath }) {
         resetIdleTimer();
       } else {
         clearIdleTimer();
+        clearTrackingTimers();
+        trackingState = TrackingState.READY;
         resetToDefault();
       }
     });
@@ -203,12 +254,12 @@ function initGazeTracking({ container, image, basePath }) {
   window.addEventListener("mouseout", handleWindowMouseOut);
   observer.observe(container);
   
-  // Listen for settings changes
   window.addEventListener('settingsChanged', (e) => {
     if (!e.detail.animationEnabled) {
+        clearTrackingTimers();
+        trackingState = TrackingState.READY;
         resetToDefault();
     } else {
-        // When re-enabled, snap to center or mouse
         resetToCenter();
     }
   });
@@ -225,6 +276,7 @@ function initGazeTracking({ container, image, basePath }) {
     window.removeEventListener("mouseout", handleWindowMouseOut);
     observer.disconnect();
     clearIdleTimer();
+    clearTrackingTimers();
     if (rafId !== null) {
       window.cancelAnimationFrame(rafId);
       rafId = null;
