@@ -416,7 +416,7 @@
   visibility: hidden;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
-  z-index: 10000;
+  z-index: 10050;
   box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -442,7 +442,7 @@
 /* Shortcut Notification Popup */
 .settings-notification {
   position: absolute;
-  bottom: calc(100% + 20px);
+  bottom: calc(100% + 36px);
   right: 0;
   width: max-content;
   max-width: 240px;
@@ -458,7 +458,7 @@
   visibility: hidden;
   transform: translateY(10px) scale(0.95);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 10001;
+  z-index: 10000;
   pointer-events: none;
 }
 
