@@ -1,11 +1,24 @@
     <footer class="footer card">
-      <div class="footer-status">
-        <div class="status-item">
-          <span class="status-indicator"></span>
-          <span>SYSTEM ONLINE</span>
+      <div class="footer-status-bar">
+        <div class="status-bar-item">
+          <span class="status-dot"></span>
+          <span class="status-label">SYS_STATUS:</span>
+          <span class="status-value">ONLINE</span>
         </div>
-        <div class="status-item">
-          <span>V.2.0.45</span>
+        <span class="status-bar-divider"></span>
+        <div class="status-bar-item">
+          <span class="status-label">UPTIME:</span>
+          <span class="status-value" id="status-uptime">0s</span>
+        </div>
+        <span class="status-bar-divider"></span>
+        <div class="status-bar-item">
+          <span class="status-label">PING:</span>
+          <span class="status-value" id="status-ping">&lt;1ms</span>
+        </div>
+        <span class="status-bar-divider"></span>
+        <div class="status-bar-item">
+          <span class="status-label">VERSION:</span>
+          <span class="status-value">v2.1.0</span>
         </div>
       </div>
       <div class="footer-command terminal-command">

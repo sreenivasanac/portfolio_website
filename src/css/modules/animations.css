@@ -270,6 +270,287 @@
 }
 
 /* =========================================
+   Data Stream Border Effect
+   ========================================= */
+@keyframes data-stream-horizontal {
+  0% {
+    background-position: -200% 0, 200% 100%;
+  }
+  100% {
+    background-position: 200% 0, -200% 100%;
+  }
+}
+
+@keyframes data-stream-vertical {
+  0% {
+    background-position: 0 -200%, 100% 200%;
+  }
+  100% {
+    background-position: 0 200%, 100% -200%;
+  }
+}
+
+.data-stream-border {
+  position: relative;
+}
+
+.data-stream-border::before,
+.data-stream-border::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Horizontal streams (top and bottom) */
+.data-stream-border::before {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, transparent, var(--accent), rgba(0, 243, 255, 0.8), var(--accent), transparent) top / 200% 2px no-repeat,
+    linear-gradient(90deg, transparent, var(--accent), rgba(0, 243, 255, 0.8), var(--accent), transparent) bottom / 200% 2px no-repeat;
+  animation: data-stream-horizontal 3s linear infinite;
+}
+
+/* Vertical streams (left and right) */
+.data-stream-border::after {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(180deg, transparent, var(--accent), rgba(0, 243, 255, 0.8), var(--accent), transparent) left / 2px 200% no-repeat,
+    linear-gradient(180deg, transparent, var(--accent), rgba(0, 243, 255, 0.8), var(--accent), transparent) right / 2px 200% no-repeat;
+  animation: data-stream-vertical 3s linear infinite;
+}
+
+.data-stream-border:hover::before,
+.data-stream-border:hover::after {
+  opacity: 1;
+}
+
+/* =========================================
+   Boot Sequence Animation
+   ========================================= */
+@keyframes boot-cursor-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes boot-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes boot-glitch-flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.3; }
+  94% { opacity: 1; }
+  95% { opacity: 0.5; }
+  96% { opacity: 1; }
+}
+
+.boot-sequence-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  min-height: 300px;
+  background: var(--background);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 80px 32px 32px;
+  font-family: "JetBrains Mono", monospace;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.boot-sequence-overlay.boot-complete {
+  animation: boot-fade-out 0.5s ease forwards;
+}
+
+@keyframes boot-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.boot-line {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin: 4px 0;
+  opacity: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.boot-line.visible {
+  animation: boot-fade-in 0.2s ease forwards;
+}
+
+.boot-line.success {
+  color: var(--accent-success);
+}
+
+.boot-line.warning {
+  color: var(--accent-secondary);
+}
+
+.boot-line .boot-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: boot-cursor-blink 0.8s infinite;
+}
+
+.boot-progress {
+  margin-top: 12px;
+  height: 2px;
+  background: var(--border-subtle);
+  border-radius: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.boot-progress.visible {
+  opacity: 1;
+}
+
+.boot-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  width: 0%;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* =========================================
+   Floating Code Snippets (Static)
+   ========================================= */
+.floating-code-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: -3;
+  overflow: hidden;
+}
+
+.floating-code-snippet {
+  position: absolute;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  opacity: 0.12;
+  white-space: pre;
+  line-height: 1.4;
+  user-select: none;
+}
+
+/* =========================================
+   Cursor State Changes
+   ========================================= */
+body {
+  cursor: crosshair;
+}
+
+a, button, .hero-pill, .nav-link, .project-link, .contact-link, 
+.sys-btn, .modal-close, .see-more-link, [role="button"] {
+  cursor: pointer;
+}
+
+/* Custom targeting reticle for interactive hover */
+a:hover, button:hover, .hero-pill:hover, .nav-link:hover, 
+.project-link:hover, .contact-link:hover, .sys-btn:hover,
+.project-card:hover, .skill-group:hover, .achievement:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300f3ff' stroke-width='1.5'%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3Cline x1='12' y1='2' x2='12' y2='6'/%3E%3Cline x1='12' y1='18' x2='12' y2='22'/%3E%3Cline x1='2' y1='12' x2='6' y2='12'/%3E%3Cline x1='18' y1='12' x2='22' y2='12'/%3E%3C/svg%3E") 12 12, pointer;
+}
+
+input, textarea, select {
+  cursor: text;
+}
+
+/* =========================================
+   Status Bar (Footer)
+   ========================================= */
+.footer-status-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 16px;
+  background: rgba(0, 243, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  flex-wrap: wrap;
+}
+
+.status-bar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.status-bar-item .status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-success);
+  box-shadow: 0 0 6px var(--accent-success);
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-success); }
+  50% { opacity: 0.6; box-shadow: 0 0 3px var(--accent-success); }
+}
+
+.status-bar-item .status-label {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-bar-item .status-value {
+  color: var(--muted-foreground);
+}
+
+.status-bar-divider {
+  width: 1px;
+  height: 12px;
+  background: var(--border-subtle);
+}
+
+@media (max-width: 600px) {
+  .footer-status-bar {
+    gap: 12px;
+    padding: 6px 12px;
+    font-size: 0.65rem;
+  }
+  
+  .status-bar-divider {
+    display: none;
+  }
+}
+
+/* =========================================
    Disable Animation Overrides
    ========================================= */
 
@@ -343,4 +624,28 @@ body.disable-animation .hero-card::before {
   animation: none !important;
   opacity: 0 !important;
   display: none !important;
+}
+
+/* 11. Data Stream Border Effect */
+body.disable-animation .data-stream-border::before,
+body.disable-animation .data-stream-border::after,
+body.disable-animation .data-stream-border:hover::before,
+body.disable-animation .data-stream-border:hover::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* 12. Boot Sequence */
+body.disable-animation .boot-sequence-overlay {
+  display: none !important;
+}
+
+/* 13. Floating Code Snippets */
+body.disable-animation .floating-code-container {
+  display: none !important;
+}
+
+/* 14. Status Bar Pulse */
+body.disable-animation .status-bar-item .status-dot {
+  animation: none !important;
 }
