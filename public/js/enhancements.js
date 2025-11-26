@@ -116,20 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
     this.layers = layers;
   }
 }`,
-      `const pipeline = data
-  .filter(x => x.valid)
-  .map(transform)
-  .reduce(aggregate);`,
       `def train_model(X, y):
     model.fit(X, y)
     return model.predict(X)`,
       `SELECT * FROM experience
 WHERE years > 5
 ORDER BY impact DESC;`,
-      `interface Developer {
-  skills: string[];
-  experience: number;
-}`,
       `kubectl apply -f deploy.yaml
 # Deploying to cluster...`,
       `git commit -m "feat: AI"
@@ -138,14 +130,12 @@ git push origin main`,
 
     // Positions for snippets (spread across viewport)
     const positions = [
-      { top: '8%', left: '3%' },
-      { top: '15%', right: '5%' },
-      { top: '35%', left: '2%' },
-      { top: '45%', right: '3%' },
-      { top: '60%', left: '4%' },
-      { top: '70%', right: '2%' },
-      { top: '82%', left: '3%' },
-      { top: '88%', right: '4%' },
+      { top: '10%', left: '3%' },
+      { top: '20%', right: '4%' },
+      { top: '45%', left: '2%' },
+      { top: '55%', right: '3%' },
+      { top: '75%', left: '4%' },
+      { top: '85%', right: '3%' },
     ];
 
     codeSnippets.forEach((code, index) => {
