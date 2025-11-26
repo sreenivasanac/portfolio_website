@@ -649,3 +649,17 @@ body.disable-animation .floating-code-container {
 body.disable-animation .status-bar-item .status-dot {
   animation: none !important;
 }
+
+/* 15. Disable fancy cursor when animation is off - use standard cursors */
+body.disable-animation a:hover,
+body.disable-animation button:hover,
+body.disable-animation .hero-pill:hover,
+body.disable-animation .nav-link:hover,
+body.disable-animation .project-link:hover,
+body.disable-animation .contact-link:hover,
+body.disable-animation .sys-btn:hover,
+body.disable-animation .project-card:hover,
+body.disable-animation .skill-group:hover,
+body.disable-animation .achievement:hover {
+  cursor: pointer !important;
+}
