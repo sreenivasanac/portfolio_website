@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Hacker Text Scramble Effect
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>[]{}|/\\~`";
   const scrambleElements = document.querySelectorAll(".hacker-text, .scramble-text, .project-text h3, .company-header h3 a");
 
   scrambleElements.forEach((element) => {
@@ -228,23 +228,28 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const interval = setInterval(() => {
-        event.target.innerText = originalText
-          .split("")
-          .map((letter, index) => {
-            if (index < iterations) {
-              return originalText[index];
+        const words = originalText.split(' ');
+        const revealIndex = Math.floor(iterations / 3);
+        const scrambledWords = words.map((word) => {
+          return word.split('').map((char, charIndex) => {
+            if (charIndex < revealIndex) {
+              return char;
             }
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-
-        if (iterations >= originalText.length) {
+            return letters[Math.floor(Math.random() * letters.length)];
+          }).join('');
+        });
+        
+        event.target.innerText = scrambledWords.join(' ');
+        
+        const maxWordLength = Math.max(...words.map(w => w.length));
+        
+        if (revealIndex >= maxWordLength) {
           clearInterval(interval);
-          event.target.innerText = originalText; // Ensure final text is correct
+          event.target.innerText = originalText;
           delete element.dataset.scrambleInterval;
         }
 
-        iterations += 1; // Faster: 1 character per 30ms
+        iterations += 1;
       }, 30);
 
       element.dataset.scrambleInterval = interval;
