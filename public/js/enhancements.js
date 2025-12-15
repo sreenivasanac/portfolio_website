@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const bootMessages = [
       { text: '> INITIALIZING CAREER_DATABASE...', delay: 0 },
-      { text: '> LOADING EXPERIENCE_MODULES...', delay: 300 },
-      { text: '> SCANNING CREDENTIALS... [VERIFIED]', delay: 600, class: 'success' },
-      { text: '> AUTHENTICATING PROFILE... [AUTHORIZED]', delay: 900, class: 'success' },
-      { text: '> DECRYPTING WORK_HISTORY...', delay: 1200 },
-      { text: '> ACCESS GRANTED', delay: 1500, class: 'success' },
+      { text: '> LOADING EXPERIENCE_MODULES...', delay: 600 },
+      { text: '> SCANNING CREDENTIALS... [VERIFIED]', delay: 1200, class: 'success' },
+      { text: '> AUTHENTICATING PROFILE... [AUTHORIZED]', delay: 1800, class: 'success' },
+      { text: '> DECRYPTING WORK_HISTORY...', delay: 2400 },
+      { text: '> ACCESS GRANTED', delay: 3000, class: 'success' },
     ];
 
     // Build boot lines
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         overlay.remove();
       }, 500);
-    }, 2000);
+    }, 4000);
   };
 
   // =========================================
