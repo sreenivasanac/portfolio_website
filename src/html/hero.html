@@ -1,6 +1,7 @@
       <section id="about" class="card hero-card">
         <div class="terminal-bar">
           <div class="terminal-dots">
+            <button class="terminal-close-btn" id="terminal-close-btn" aria-label="Close terminal" title="Close terminal (ESC)">×</button>
             <span class="dot red"></span>
             <span class="dot yellow"></span>
             <span class="dot green"></span>
@@ -25,7 +26,15 @@
             </span>
             <span class="terminal-command-text">whoami</span>
           </div>
-          <div class="hero-controls">
+          <!-- Collapsed hero summary - shown when terminal is active -->
+          <div class="hero-collapsed" id="hero-collapsed" style="display: none;">
+            <span class="hero-collapsed-icon">▸</span>
+            <span class="hero-collapsed-text">Sreenivasan AC | AI Software Engineer | 9+ yrs FAANG & Startups</span>
+            <button class="hero-expand-btn" id="hero-expand-btn" aria-label="Show full profile">[show profile]</button>
+          </div>
+          <!-- Terminal output area -->
+          <div class="terminal-output" id="terminal-output" style="display: none;" role="log" aria-live="polite"></div>
+          <div class="hero-controls" id="hero-controls">
             <div class="hero-content">
               <div class="avatar">
                 <img id="portrait-gaze-img" src="assets/images/gaze_images/gaze_px0p0_py0p0_160.webp"
@@ -149,6 +158,22 @@
                 </span>
               </a>
             </div>
+          </div>
+          <!-- Terminal input line -->
+          <div class="terminal-input-line">
+            <span class="terminal-input-prompt">&gt;</span>
+            <form id="terminal-input-form" autocomplete="off">
+              <input 
+                type="text" 
+                id="terminal-input" 
+                placeholder="type 'help' for commands..."
+                aria-label="Terminal command input"
+                spellcheck="false"
+                autocapitalize="none"
+                autocorrect="off"
+              >
+            </form>
+            <span class="terminal-input-hint">ESC to close</span>
           </div>
         </div>
       </section>
