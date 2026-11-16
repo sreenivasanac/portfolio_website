@@ -1,6 +1,6 @@
 ## Portfolio Website (Vite + pnpm)
 
-Calm, terminal-inspired single-page portfolio built with vanilla HTML/CSS/JS and bundled with Vite.
+Sci-fi HUD single-page portfolio (static and readable: no sound, particles or glitch effects) built with vanilla HTML/CSS/JS and bundled with Vite.
 
 **Live Site:** https://sreenivasanac.github.io/portfolio_website/
 
