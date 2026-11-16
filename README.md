@@ -1,8 +1,20 @@
 ## Portfolio Website (Vite + pnpm)
 
-Terminal-inspired single-page portfolio built with vanilla HTML/CSS/JS and bundled with Vite.
+Calm, terminal-inspired single-page portfolio built with vanilla HTML/CSS/JS and bundled with Vite.
 
 **Live Site:** https://sreenivasanac.github.io/portfolio_website/
+
+---
+
+## Design & Content (Where to Edit)
+
+- **Theme:** `src/css/main.css` is the whole stylesheet. The colours (one accent, `--accent`) and the two fonts are tokens at the top of the file.
+- **Sections:** one HTML partial each in `src/html/` (hero, projects, experience, skills, education, contact), assembled by `index.html`.
+- **Ask box:** `public/js/ask.js`. Visitors type a plain-language question and get an answer matched in the browser against the `KB` list in that file (no backend, no LLM call). Each answer cites blocks on the page by element id (`xp-*` for roles, `pj-*` for projects), so keep those ids in sync when adding content.
+  - Link straight to an answer with `?q=`, e.g. `…/portfolio_website/?q=rag in production`.
+  - After editing `KB`, open the site with `?asktest` and check the console: it runs the matcher self-check.
+- **Role details modal:** "Full story" links open content from `public/js/company-data.js`.
+- **Motion:** only the portrait that follows the cursor (`public/js/portrait_gaze.js`) and the word-by-word answer reveal. `prefers-reduced-motion` turns both transitions off.
 
 ---
 
