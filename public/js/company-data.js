@@ -6,10 +6,22 @@ window.companyDetails = {
       <h3>AI Agents for Sales and Marketing</h3>
       <p>Keystone runs sales and marketing for brick-and-mortar businesses such as salons, medspas, wellness and fitness studios and specialty care practices. AI agents, working with human experts, manage a business's website, blog, social media, reviews, ads, leads and CRM, with approval steps before anything goes live.</p>
 
+      <h3>One of the First Engineers</h3>
+      <p>I joined this early-stage startup as one of its first engineers and built a major part of the codebase from scratch. I made early decisions on the agentic architecture and engineering practices, and helped hire the engineers who joined after me.</p>
+
+      <h3>Front Desk Voice Agent</h3>
+      <ul>
+        <li>Designed and built Front Desk, a voice agent that answers a business's missed and after-hours phone calls through call forwarding.</li>
+        <li>The agent answers questions from the business's own information and FAQs, texts a booking link on request, takes messages that are flagged for the team, and creates or updates a lead for every call.</li>
+        <li>One shared agent serves every business, with business context injected per call and a phone number provisioned automatically when an owner turns the feature on.</li>
+        <li>Each call appears in the unified conversation thread with a summary, transcript and recording playback, and feeds the same lead scoring as texts and web forms.</li>
+        <li>Compared five voice providers before choosing one, and kept the integration behind a provider-neutral adapter.</li>
+        <li>Designed the evals: a simulated-caller regression suite run before each prompt release, graded by our own checks, and LLM-judge scoring of live calls in production.</li>
+      </ul>
+
       <h3>Architecture & Platform</h3>
       <ul>
         <li>Researched agent frameworks and cloud options, and worked on the agent architecture and Google Cloud deployment design for the platform.</li>
-        <li>Built the authentication service: email verification, login and account creation, account invites and roles, and admin authentication.</li>
         <li>Built the company design system, generating components (buttons, inputs, date picker, select, modal, calendar, Markdown editor) from Figma designs with AI coding workflows and a Figma MCP connection.</li>
         <li>Built admin console screens for account creation, integrations, agent settings and data import.</li>
       </ul>
@@ -33,7 +45,7 @@ window.companyDetails = {
       </ul>
 
       <h3>Technologies Used</h3>
-      <p>Python, TypeScript, Vite, TanStack, Google Cloud, Kubernetes, Meta (Facebook and Instagram) APIs, Crawl4AI, LLM APIs, Figma MCP</p>
+      <p>Python, TypeScript, Vite, TanStack, Google Cloud, Kubernetes, Retell (voice), Twilio, Langfuse (evals and tracing), Meta (Facebook and Instagram) APIs, Crawl4AI, LLM APIs, Figma MCP</p>
     `
   },
   brahmasumm: {

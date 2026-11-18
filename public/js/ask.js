@@ -37,8 +37,8 @@
    */
   const KB = [
     {
-      keys: ['keystone', 'marketing', 'sales', 'crm', 'lead', 'leads', 'social', 'instagram', 'facebook', 'meta', 'brick', 'mortar', 'salon', 'salons', 'medspa', 'medspas', 'figma', 'auth', 'authentication'],
-      a: 'I was a founding engineer at Keystone from January to December 2026, building AI agents that run sales and marketing for brick-and-mortar businesses such as salons, medspas and fitness studios. I worked on the agent architecture and Google Cloud design, then built social posting to Facebook and Instagram with AI-generated content, lead and contact management, LLM-based import of a business\'s existing website data, the authentication service and the design system.',
+      keys: ['keystone', 'marketing', 'sales', 'crm', 'lead', 'leads', 'social', 'instagram', 'facebook', 'meta', 'brick', 'mortar', 'salon', 'salons', 'medspa', 'medspas', 'figma', 'voice', 'frontdesk', 'eval', 'evals', 'evaluation', 'evaluations'],
+      a: 'I was a founding engineer at Keystone from January to December 2026, one of the first engineers at an early-stage startup whose AI agents run sales and marketing for brick-and-mortar businesses such as salons, medspas and fitness studios. I built a major part of the codebase from scratch and made early decisions on the agentic architecture, engineering practices and hiring. My work included a voice agent that answers a business\'s missed calls, with evals for it, social posting with AI-generated content, lead and contact management, and LLM-based import of a business\'s existing website data.',
       cites: [['Keystone', 'xp-keystone']],
       next: ['Which agent systems have you built?', 'Have you led a team?', "What's your stack?"],
     },
@@ -68,7 +68,7 @@
     },
     {
       keys: ['agent', 'agents', 'agentic', 'multi', 'langgraph', 'agno', 'autonomous', 'automation', 'orchestration', 'workflow', 'workflows', 'namesmith', 'receptionist', 'organiser', 'organizer', 'vyasa', 'chatbot'],
-      a: 'At Keystone I built agents that generate and schedule social posts and blogs and follow up on leads for brick-and-mortar businesses. Outside work there are three, all with code you can read. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
+      a: 'At Keystone I built a voice agent that answers a business\'s missed calls, and agents that generate and schedule social posts and blogs for brick-and-mortar businesses. Outside work there are three, all with code you can read. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
       cites: [['Namesmith Agents', 'pj-namesmith'], ['File organiser agent', 'pj-filevyasa'], ['AI Receptionist', 'pj-receptionist'], ['Keystone', 'xp-keystone']],
       next: ['What did you build at Keystone?', 'Have you shipped RAG in production?', "What's your stack?"],
     },
@@ -94,7 +94,7 @@
     },
     {
       keys: ['startup', 'startups', 'founding', 'founder', 'brahmasumm', 'team', 'lead', 'led', 'leadership', 'mentor', 'mentoring', 'manage', 'ceo'],
-      a: 'I was the founding engineer at Brahmasumm AI, an enterprise document-intelligence startup, from November 2024 to July 2025. I built its core features end to end, including multimodal file processing, citations and knowledge-base partitioning. I also ran technical hiring, screening 240+ candidates, and worked directly with the CEO. After that I was a founding engineer at Keystone, where I also interviewed engineering candidates.',
+      a: 'I was the founding engineer at Brahmasumm AI, an enterprise document-intelligence startup, from November 2024 to July 2025. I built its core features end to end, including multimodal file processing, citations and knowledge-base partitioning. I also ran technical hiring, screening 240+ candidates, and worked directly with the CEO. After that I was one of the first engineers at Keystone, where I made early decisions on architecture and engineering practices and helped hire the team.',
       cites: [['Brahmasumm AI', 'xp-brahmasumm'], ['Keystone', 'xp-keystone']],
       next: ['Have you deployed LLMs on-prem?', 'How do I reach you?'],
     },
@@ -179,6 +179,8 @@
       'Have you led a team?': 'xp-brahmasumm',
       'What did you build at Keystone?': 'xp-keystone',
       'do you know sales and marketing agents': 'xp-keystone',
+      'have you built a voice agent': 'xp-keystone',
+      'do you write evals': 'xp-keystone',
       'where did you study': 'education',
       'tell me about fathom': 'xp-fathom',
       'tell me about yourself': 'experience',
