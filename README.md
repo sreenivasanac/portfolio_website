@@ -4,6 +4,10 @@ Sci-fi HUD single-page portfolio (static and readable: no sound, particles or gl
 
 **Live Site:** https://sreenivasanac.github.io/portfolio_website/
 
+![Hero section with the ask box](docs/screenshots/hero.jpg)
+
+![Experience section](docs/screenshots/experience.jpg)
+
 ---
 
 ## Design & Content (Where to Edit)

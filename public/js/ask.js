@@ -21,6 +21,7 @@
   const STARTERS = [
     'Have you shipped RAG in production?',
     'Which agent systems have you built?',
+    'What did you build at Keystone?',
     'What did you do at Google?',
     "What's your stack?",
     'How do I reach you?',
@@ -35,6 +36,12 @@
    *   next  - follow-up questions offered afterwards (defaults to STARTERS)
    */
   const KB = [
+    {
+      keys: ['keystone', 'marketing', 'sales', 'crm', 'lead', 'leads', 'social', 'instagram', 'facebook', 'meta', 'brick', 'mortar', 'salon', 'salons', 'medspa', 'medspas', 'figma', 'auth', 'authentication'],
+      a: 'I was a founding engineer at Keystone from January to December 2026, building AI agents that run sales and marketing for brick-and-mortar businesses such as salons, medspas and fitness studios. I worked on the agent architecture and Google Cloud design, then built social posting to Facebook and Instagram with AI-generated content, lead and contact management, LLM-based import of a business\'s existing website data, the authentication service and the design system.',
+      cites: [['Keystone', 'xp-keystone']],
+      next: ['Which agent systems have you built?', 'Have you led a team?', "What's your stack?"],
+    },
     {
       keys: ['google', 'gcp', 'datacenter', 'datacenters', 'rack', 'fiber', 'alerting', 'mttd', 'planning'],
       a: 'I was a Senior Software Development Engineer on Google Cloud Platform from March 2020 to June 2022. I built the planning and task-generation system for datacenter operations, which turned static Excel workflows into automated ones handling 1000+ operations a day. I also automated 200+ rack migrations, cutting manual intervention by 80%, and built a reachability-zone calculation that reduced infrastructure costs by 15%.',
@@ -61,9 +68,9 @@
     },
     {
       keys: ['agent', 'agents', 'agentic', 'multi', 'langgraph', 'agno', 'autonomous', 'automation', 'orchestration', 'workflow', 'workflows', 'namesmith', 'receptionist', 'organiser', 'organizer', 'vyasa', 'chatbot'],
-      a: 'Three, all with code you can read. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
-      cites: [['Namesmith Agents', 'pj-namesmith'], ['File organiser agent', 'pj-filevyasa'], ['AI Receptionist', 'pj-receptionist']],
-      next: ['Have you shipped RAG in production?', "What's your stack?"],
+      a: 'At Keystone I built agents that generate and schedule social posts and blogs and follow up on leads for brick-and-mortar businesses. Outside work there are three, all with code you can read. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
+      cites: [['Namesmith Agents', 'pj-namesmith'], ['File organiser agent', 'pj-filevyasa'], ['AI Receptionist', 'pj-receptionist'], ['Keystone', 'xp-keystone']],
+      next: ['What did you build at Keystone?', 'Have you shipped RAG in production?', "What's your stack?"],
     },
     {
       keys: ['health', 'healthcare', 'healthtech', 'medical', 'hipaa', 'ocr', 'fathom', 'longevity', 'clinical'],
@@ -87,8 +94,8 @@
     },
     {
       keys: ['startup', 'startups', 'founding', 'founder', 'brahmasumm', 'team', 'lead', 'led', 'leadership', 'mentor', 'mentoring', 'manage', 'ceo'],
-      a: 'I was the founding engineer at Brahmasumm AI, an enterprise document-intelligence startup, from November 2024 to July 2025. I built its core features end to end, including multimodal file processing, citations and knowledge-base partitioning. I also ran technical hiring, screening 240+ candidates, and worked directly with the CEO.',
-      cites: [['Brahmasumm AI', 'xp-brahmasumm']],
+      a: 'I was the founding engineer at Brahmasumm AI, an enterprise document-intelligence startup, from November 2024 to July 2025. I built its core features end to end, including multimodal file processing, citations and knowledge-base partitioning. I also ran technical hiring, screening 240+ candidates, and worked directly with the CEO. After that I was a founding engineer at Keystone, where I also interviewed engineering candidates.',
+      cites: [['Brahmasumm AI', 'xp-brahmasumm'], ['Keystone', 'xp-keystone']],
       next: ['Have you deployed LLMs on-prem?', 'How do I reach you?'],
     },
     {
@@ -119,7 +126,7 @@
     {
       // Keep these few and generic: every extra word here can outvote a specific topic above.
       keys: ['experience', 'background', 'career', 'years', 'history', 'companies', 'faang', 'why', 'strengths', 'summary', 'who', 'whoami', 'about', 'yourself', 'intro', 'introduce'],
-      a: "I'm an AI software engineer with 9+ years of shipping production systems, at Google, Apple and Groupon and at startups including Brahmasumm AI and Fathom Health. These days I work on agentic systems, RAG pipelines and on-prem LLM deployments, mostly for enterprise, customer support, healthtech and legal teams.",
+      a: "I'm an AI software engineer with 9+ years of shipping production systems, at Google, Apple and Groupon and at startups including Keystone, Brahmasumm AI and Fathom Health. These days I work on agentic systems, RAG pipelines and on-prem LLM deployments, mostly for enterprise, customer support, healthtech and legal teams.",
       cites: [['Experience', 'experience'], ['Projects', 'projects']],
     },
     {
@@ -170,6 +177,8 @@
       'How do I reach you?': 'mailto:' + EMAIL,
       'Have you deployed LLMs on-prem?': 'xp-brahmasumm',
       'Have you led a team?': 'xp-brahmasumm',
+      'What did you build at Keystone?': 'xp-keystone',
+      'do you know sales and marketing agents': 'xp-keystone',
       'where did you study': 'education',
       'tell me about fathom': 'xp-fathom',
       'tell me about yourself': 'experience',

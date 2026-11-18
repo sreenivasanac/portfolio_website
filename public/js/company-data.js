@@ -1,5 +1,41 @@
 // Company details data for portfolio website
 window.companyDetails = {
+  keystone: {
+    title: "Keystone - Founding Engineer",
+    content: `
+      <h3>AI Agents for Sales and Marketing</h3>
+      <p>Keystone runs sales and marketing for brick-and-mortar businesses such as salons, medspas, wellness and fitness studios and specialty care practices. AI agents, working with human experts, manage a business's website, blog, social media, reviews, ads, leads and CRM, with approval steps before anything goes live.</p>
+
+      <h3>Architecture & Platform</h3>
+      <ul>
+        <li>Researched agent frameworks and cloud options, and worked on the agent architecture and Google Cloud deployment design for the platform.</li>
+        <li>Built the authentication service: email verification, login and account creation, account invites and roles, and admin authentication.</li>
+        <li>Built the company design system, generating components (buttons, inputs, date picker, select, modal, calendar, Markdown editor) from Figma designs with AI coding workflows and a Figma MCP connection.</li>
+        <li>Built admin console screens for account creation, integrations, agent settings and data import.</li>
+      </ul>
+
+      <h3>Agent & Product Features</h3>
+      <ul>
+        <li>Social posting: Facebook and Instagram OAuth, AI-generated post content, scheduled publishing, Instagram carousels, a calendar view and engagement sync for likes, shares and views.</li>
+        <li>Lead and contact management (CRM): design, backend APIs and frontend, website lead forms, duplicate-contact review, hot-lead classification, lead notification emails and Meta Conversions API tracking.</li>
+        <li>Business data import: web crawling with Crawl4AI and LLM-based extraction from websites, PDFs and images, with an operator review that selectively merges extracted fields.</li>
+        <li>Blog: full feature implementation, AI post generation prompts and an auto-scheduling agent.</li>
+        <li>Communication agent settings and escalation notifications for lead follow-up.</li>
+      </ul>
+
+      <h3>Reliability & Engineering Practices</h3>
+      <ul>
+        <li>Set up Google Cloud monitoring alerts routed to Slack and a production dashboard for observability.</li>
+        <li>Set up AI code review on every pull request across services, and static analysis.</li>
+        <li>Enabled integration tests in CI and cut their duration from 15 minutes to 3.</li>
+        <li>Debugged and fixed production issues across lead capture, blog generation, social sync and deployments.</li>
+        <li>Interviewed engineering candidates and documented AI-assisted coding workflows for the team.</li>
+      </ul>
+
+      <h3>Technologies Used</h3>
+      <p>Python, TypeScript, Vite, TanStack, Google Cloud, Kubernetes, Meta (Facebook and Instagram) APIs, Crawl4AI, LLM APIs, Figma MCP</p>
+    `
+  },
   brahmasumm: {
     title: "Brahmasumm AI - AI Engineer",
     content: `
