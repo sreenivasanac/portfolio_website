@@ -17,6 +17,9 @@
   const EMAIL = 'sreenivasan.nitt@gmail.com';
   const RESUME_URL = 'https://drive.google.com/file/d/1dQNSDMnKY2ZJGlvO_liYfB3oQCCnbAiz/view?usp=sharing';
   const CALL_URL = 'https://calendar.app.google/MynJqdZbzM6Z7JfPA';
+  // Projects mentioned in answers that no longer have a card on the page: cited by link instead.
+  const LONGEVITY_URL = 'https://devpost.com/software/healthgod-personalised-ai-health-longevity-coach';
+  const QUORA_URL = 'https://github.com/sreenivasanac/quora_analysis';
   const HIGHLIGHT_MS = 2600; // how long a cited block stays highlighted
   const STARTERS = [
     'Have you shipped RAG in production?',
@@ -57,7 +60,7 @@
     {
       keys: ['rag', 'retrieval', 'vector', 'vectors', 'chunking', 'pinecone', 'chromadb', 'chroma', 'faiss', 'citation', 'citations', 'document', 'documents', 'multimodal', 'semantic', 'search', 'knowledge'],
       a: 'Yes. At Brahmasumm AI I designed and built RAG pipelines over 50GB+ datasets for Fortune 500 clients, with multimodal extraction from PDFs, presentations and spreadsheets, citations, and sub-second query times through chunking and vector-database tuning. Outside work I built Longevity Coach, a FAISS-based RAG app that won a hackathon.',
-      cites: [['Brahmasumm AI', 'xp-brahmasumm'], ['Brahmasumm Document AI', 'pj-brahmasumm'], ['Longevity Coach', 'pj-longevity']],
+      cites: [['Brahmasumm AI', 'xp-brahmasumm'], ['Brahmasumm Document AI', 'pj-brahmasumm'], ['Longevity Coach', LONGEVITY_URL]],
       next: ['Have you deployed LLMs on-prem?', 'Which agent systems have you built?'],
     },
     {
@@ -68,14 +71,30 @@
     },
     {
       keys: ['agent', 'agents', 'agentic', 'multi', 'langgraph', 'agno', 'autonomous', 'automation', 'orchestration', 'workflow', 'workflows', 'namesmith', 'receptionist', 'organiser', 'organizer', 'vyasa', 'chatbot'],
-      a: 'At Keystone I built a voice agent that answers a business\'s missed calls, and agents that generate and schedule social posts and blogs for brick-and-mortar businesses. Outside work there are three, all with code you can read. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
-      cites: [['Namesmith Agents', 'pj-namesmith'], ['File organiser agent', 'pj-filevyasa'], ['AI Receptionist', 'pj-receptionist'], ['Keystone', 'xp-keystone']],
+      a: 'At Keystone I built a voice agent that answers a business\'s missed calls, and agents that generate and schedule social posts and blogs for brick-and-mortar businesses. Outside work there are four, all with code you can read. CallEnvoy is a phone-call server that lets any AI agent call a business, get through the phone menu and wait on hold. Namesmith Agents is a LangGraph multi-agent system that takes domain names from discovery and scoring through to purchase. The file organiser is a desktop agent built with Tauri and Agno that proposes folder structures and moves files only with human approval. AI Receptionist is a booking, CRM and marketing chatbot for salons, medspas and fitness studios.',
+      cites: [['CallEnvoy', 'pj-callenvoy'], ['Namesmith Agents', 'pj-namesmith'], ['File organiser agent', 'pj-filevyasa'], ['AI Receptionist', 'pj-receptionist'], ['Keystone', 'xp-keystone']],
       next: ['What did you build at Keystone?', 'Have you shipped RAG in production?', "What's your stack?"],
     },
     {
       keys: ['health', 'healthcare', 'healthtech', 'medical', 'hipaa', 'ocr', 'fathom', 'longevity', 'clinical'],
       a: 'At Fathom Health I architected an OCR pipeline that processed 900K+ HIPAA-compliant medical records for ML training on Spark and BigQuery, and set up an EFK logging stack that cut troubleshooting time by 60%. More recently I built Longevity Coach, a research-grounded health assistant that won a hackathon.',
-      cites: [['Fathom Health', 'xp-fathom'], ['Longevity Coach', 'pj-longevity']],
+      cites: [['Fathom Health', 'xp-fathom'], ['Longevity Coach', LONGEVITY_URL]],
+    },
+    {
+      keys: ['callenvoy', 'holdforme', 'hold', 'pipecat', 'twilio', 'mcp', 'telephony'],
+      a: 'CallEnvoy is a phone-call server for AI agents. Any MCP client, such as Claude Code or Codex, asks it to call a business; the AI presses the menu keys, waits on hold and talks to the person, and you can listen in and take over at any time. It is one Python process built on FastAPI and Pipecat, with Twilio for telephony and a voice bot per call.',
+      cites: [['CallEnvoy', 'pj-callenvoy']],
+      next: ['What did you build at Keystone?', 'Which agent systems have you built?'],
+    },
+    {
+      keys: ['review', 'reviews', 'sieve', 'yelp', 'tripadvisor', 'trustpilot', 'rating', 'ratings', 'fake'],
+      a: 'Review Sieve reads a business\'s reviews on Google Maps, Yelp, Tripadvisor and Trustpilot and has models judge each one, so you get an honest rating and the problems to watch for. A cheap model tags every review and an expensive one reads only the genuine ones, which keeps a run low-cost.',
+      cites: [['Review Sieve', 'pj-reviewsieve']],
+    },
+    {
+      keys: ['deskrecall', 'macos', 'swift', 'window', 'windows', 'apartment', 'three', 'threejs', '3d', 'webgl', 'sandhya', 'sandhyavandanam', 'mantra', 'mantras', 'pwa'],
+      a: 'Three recent builds outside AI. DeskRecall is a macOS menu bar app in Swift that restores your window layout for whichever displays are connected. Spruce Apartment 3D is a walkable, to-scale Three.js model of an apartment with every surface drawn procedurally. Sandhyāvandanam is a web app that guides practitioners through the practice step by step, with mantras in the script of their choice.',
+      cites: [['DeskRecall', 'pj-deskrecall'], ['Spruce Apartment 3D', 'pj-apartment'], ['Sandhyāvandanam', 'pj-sandhya']],
     },
     {
       keys: ['robot', 'robots', 'robotics', 'invento', 'mitra', 'voice', 'alexa', 'rasa', 'conversational', 'jetson', 'nvidia', 'humanoid'],
@@ -90,7 +109,7 @@
     {
       keys: ['scraping', 'scrape', 'scraper', 'scrapy', 'quora', 'etl', 'clustering', 'cluster', 'constella', 'umap', 'kmeans', 'means', 'embeddings', 'bookmarks', 'analytics', 'airflow', 'kafka', 'pipeline', 'pipelines'],
       a: 'Two projects. Quora Activity Analytics is a scraping pipeline with anti-bot handling that turns 20K+ Quora answers into dashboards on PostgreSQL. Constella groups and labels large text collections using embeddings, deterministic K-Means and UMAP.',
-      cites: [['Quora Activity Analytics', 'pj-quora'], ['Constella', 'pj-constella']],
+      cites: [['Quora Activity Analytics', QUORA_URL], ['Constella', 'pj-constella']],
     },
     {
       keys: ['startup', 'startups', 'founding', 'founder', 'brahmasumm', 'team', 'lead', 'led', 'leadership', 'mentor', 'mentoring', 'manage', 'ceo'],
@@ -120,8 +139,8 @@
     },
     {
       keys: ['project', 'projects', 'built', 'build', 'portfolio', 'side', 'demo', 'demos', 'github', 'code', 'show'],
-      a: "Seven are on this page. The ones I'd open first are Namesmith Agents for multi-agent orchestration, Brahmasumm Document AI for enterprise RAG, and the file organiser agent for human-in-the-loop automation.",
-      cites: [['All projects', 'projects'], ['Namesmith Agents', 'pj-namesmith'], ['Brahmasumm Document AI', 'pj-brahmasumm'], ['File organiser agent', 'pj-filevyasa']],
+      a: "Ten are on this page. The ones I'd open first are CallEnvoy for voice agents that make phone calls, Namesmith Agents for multi-agent orchestration, and Review Sieve for a model-judged review pipeline.",
+      cites: [['All projects', 'projects'], ['CallEnvoy', 'pj-callenvoy'], ['Namesmith Agents', 'pj-namesmith'], ['Review Sieve', 'pj-reviewsieve']],
     },
     {
       // Keep these few and generic: every extra word here can outvote a specific topic above.
@@ -170,7 +189,10 @@
   function selfCheck() {
     const expect = {
       'Have you shipped RAG in production?': 'xp-brahmasumm',
-      'Which agent systems have you built?': 'pj-namesmith',
+      'Which agent systems have you built?': 'pj-callenvoy',
+      'tell me about callenvoy': 'pj-callenvoy',
+      'how does review sieve work': 'pj-reviewsieve',
+      'have you built a macos app': 'pj-deskrecall',
       'What did you do at Google?': 'xp-google',
       'And at Apple?': 'xp-apple',
       "What's your stack?": 'skills',

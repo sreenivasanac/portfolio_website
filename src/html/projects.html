@@ -27,6 +27,104 @@
             </div>
           </article>
 
+          <article class="project" id="pj-callenvoy">
+            <div class="project-media">
+              <img src="assets/images/projects/callenvoy.jpg"
+                alt="CallEnvoy landing page with a transcript of an AI phone call" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>CallEnvoy</h3>
+              <p>Phone-call server for AI agents. Any MCP client (Claude Code, Codex, Claude Desktop, Grok) asks it
+                to call a business; the AI presses the menu keys, waits on hold and talks to the person.</p>
+              <p class="note">You can listen in and take over at any time. One Python process hosts the MCP
+                endpoint, the telephony webhooks and a voice bot per call.</p>
+              <p class="tags">Voice agents, MCP, Pipecat, FastAPI, Twilio, Deepgram, GPT-4.1</p>
+              <p class="link-row">
+                <a href="https://callenvoy.pragnyalabs.com/" target="_blank" rel="noreferrer">Live</a>
+                <a href="https://github.com/sreenivasanac/holdforme" target="_blank" rel="noreferrer">Code</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="project" id="pj-reviewsieve">
+            <div class="project-media">
+              <img src="assets/images/projects/review-sieve.jpg"
+                alt="Review Sieve audit comparing a business's listed ratings with its model-judged rating"
+                loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Review Sieve</h3>
+              <p>Search for a business and models read its reviews on Google Maps, Yelp, Tripadvisor and Trustpilot.
+                You get an honest rating, the problems to watch for, and every review tagged genuine, generic, empty
+                or suspicious.</p>
+              <p class="note">A cheap model tags every review and an expensive one reads only the genuine ones, so a
+                run stays low-cost. The cost is shown before it starts.</p>
+              <p class="tags">LLM pipeline, model cascade, Grok, web data extraction, Python</p>
+              <p class="link-row">
+                <a href="https://reviews.pragnyalabs.com/" target="_blank" rel="noreferrer">Live</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="project" id="pj-deskrecall">
+            <div class="project-media">
+              <img src="assets/images/projects/deskrecall.jpg"
+                alt="DeskRecall profiles window showing a saved window layout per display and desktop" loading="lazy"
+                class="contain" />
+            </div>
+            <div class="project-body">
+              <h3>DeskRecall</h3>
+              <p>macOS menu bar app that puts every window back where it belongs for whichever displays are
+                connected: the right display, the right Mission Control desktop, the right size, minimized or not.
+              </p>
+              <p class="note">Save a profile once per display setup; plugging a display in does the rest.</p>
+              <p class="tags">Swift, macOS, menu bar app</p>
+              <p class="link-row">
+                <a href="https://deskrecall.pragnyalabs.com/" target="_blank" rel="noreferrer">Website</a>
+                <a href="https://github.com/sreenivasanac/deskrecall" target="_blank" rel="noreferrer">Code</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="project" id="pj-apartment">
+            <div class="project-media">
+              <img src="assets/images/projects/spruce-apartment.jpg"
+                alt="Dollhouse view of a to-scale 3D model of a one-bedroom apartment" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Spruce Apartment 3D</h3>
+              <p>Walkable, to-scale Three.js model of a one-bedroom apartment, built to plan furniture before moving
+                in, with dollhouse, plan and first-person walk views and an iPhone AR page.</p>
+              <p class="note">No external 3D assets or image textures: every surface is drawn procedurally on
+                canvas.</p>
+              <p class="tags">Three.js, WebGL, procedural textures, AR</p>
+              <p class="link-row">
+                <a href="https://apartment.pragnyalabs.com/" target="_blank" rel="noreferrer">Live</a>
+                <a href="https://github.com/sreenivasanac/spruce-apartment-3d" target="_blank"
+                  rel="noreferrer">Code</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="project" id="pj-sandhya">
+            <div class="project-media">
+              <img src="assets/images/projects/sandhyavandanam.jpg"
+                alt="Sandhyāvandanam app home screen showing the evening sandhyā" loading="lazy" />
+            </div>
+            <div class="project-body">
+              <h3>Sandhyāvandanam</h3>
+              <p>Web app that guides practitioners through Sandhyāvandanam: step-by-step actions, mantras in the
+                script of your choice with transliteration, and meanings.</p>
+              <p class="note">Covers the Kṛṣṇa Yajur Smārta and Śrī Vaiṣṇava traditions for all three daily
+                sandhyās. In alpha.</p>
+              <p class="tags">React, TypeScript, Tailwind CSS, PWA</p>
+              <p class="link-row">
+                <a href="https://sandhya.pragnyalabs.com/" target="_blank" rel="noreferrer">Live</a>
+                <a href="https://github.com/sreenivasanac/sandhyavandanam" target="_blank" rel="noreferrer">Code</a>
+              </p>
+            </div>
+          </article>
+
           <article class="project" id="pj-brahmasumm">
             <div class="project-media">
               <img src="assets/images/projects/lbnl_demo.png" alt="Brahmasumm document AI answering a question with citations"
@@ -98,43 +196,6 @@
               <p class="tags">LiteLLM, deterministic K-Means, UMAP</p>
               <p class="link-row">
                 <a href="https://github.com/sreenivasanac/constella" target="_blank" rel="noreferrer">Code</a>
-              </p>
-            </div>
-          </article>
-
-          <article class="project" id="pj-quora">
-            <div class="project-media">
-              <img src="assets/images/projects/quora_analysis.png" alt="Quora Activity Analytics dashboard"
-                loading="lazy" />
-            </div>
-            <div class="project-body">
-              <h3>Quora Activity Analytics</h3>
-              <p>Agentic web scraping pipeline that turns 20K+ Quora answers into dashboards, with anti-bot detection
-                handling.</p>
-              <p class="note">Powers longitudinal insights with automated ETL, anomaly detection, and PostgreSQL
-                warehousing.</p>
-              <p class="tags">Python, Scrapy, PostgreSQL</p>
-              <p class="link-row">
-                <a href="https://github.com/sreenivasanac/quora_analysis" target="_blank" rel="noreferrer">Code</a>
-              </p>
-            </div>
-          </article>
-
-          <article class="project" id="pj-longevity">
-            <div class="project-media">
-              <img src="assets/images/projects/longevity_coach.png" alt="Longevity Coach" loading="lazy" />
-            </div>
-            <div class="project-body">
-              <h3>Longevity Coach AI</h3>
-              <p>Longevity coach grounded in research articles, giving evidence-backed answers to everyday health
-                questions.</p>
-              <p class="note">Hackathon winner. RAG combining FAISS retrieval and multimodal embeddings.</p>
-              <p class="tags">Longevity, FAISS, LLMs, healthtech AI</p>
-              <p class="link-row">
-                <a href="https://devpost.com/software/healthgod-personalised-ai-health-longevity-coach" target="_blank"
-                  rel="noreferrer">Hackathon entry</a>
-                <a href="https://docs.google.com/presentation/d/1op1QkDQyh4G46RXsA1_s0McMoIwR1iubgtamlv5LS84/edit?usp=sharing"
-                  target="_blank" rel="noreferrer">Deck</a>
               </p>
             </div>
           </article>
