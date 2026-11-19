@@ -174,7 +174,9 @@
 
   // Returns the best-scoring KB entry for a question, or FALLBACK if nothing hits.
   function match(question) {
-    const tokens = question.toLowerCase().match(/[a-z0-9$+#]+/g) || [];
+    // Strip diacritics first so "Sandhyāvandanam" matches the plain-letter key.
+    const plain = question.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    const tokens = plain.match(/[a-z0-9$+#]+/g) || [];
     let best = FALLBACK;
     let bestScore = 0;
     for (const entry of KB) {
@@ -193,6 +195,8 @@
       'tell me about callenvoy': 'pj-callenvoy',
       'how does review sieve work': 'pj-reviewsieve',
       'have you built a macos app': 'pj-deskrecall',
+      'what is Sandhyāvandanam': 'pj-deskrecall',
+      'what is sandhyavandanam': 'pj-deskrecall',
       'What did you do at Google?': 'xp-google',
       'And at Apple?': 'xp-apple',
       "What's your stack?": 'skills',
