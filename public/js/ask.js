@@ -87,6 +87,12 @@
       next: ['What did you build at Keystone?', 'Which agent systems have you built?'],
     },
     {
+      keys: ['eklavya', 'drona', 'gym', 'fitness', 'workout', 'coach', 'android', 'kotlin', 'accessibility', 'reps', 'squat', 'squats', 'pose', 'mediapipe'],
+      a: 'Eklavya is a voice gym coach for Android that operates the fitness app already on your phone. You say "Hey Drona, show me the video for pistol squat"; a decision model picks each tap from a list of what is on the screen and an accessibility service carries it out. Ask it to count your squats and a pose model on the phone counts the reps through the front camera and says what to fix. It is native Kotlin, early, and open source.',
+      cites: [['Eklavya', 'pj-eklavya']],
+      next: ['tell me about callenvoy', 'Which agent systems have you built?'],
+    },
+    {
       keys: ['review', 'reviews', 'sieve', 'yelp', 'tripadvisor', 'trustpilot', 'rating', 'ratings', 'fake'],
       a: 'Review Sieve reads a business\'s reviews on Google Maps, Yelp, Tripadvisor and Trustpilot and has models judge each one, so you get an honest rating and the problems to watch for. A cheap model tags every review and an expensive one reads only the genuine ones, which keeps a run low-cost.',
       cites: [['Review Sieve', 'pj-reviewsieve']],
@@ -139,7 +145,7 @@
     },
     {
       keys: ['project', 'projects', 'built', 'build', 'portfolio', 'side', 'demo', 'demos', 'github', 'code', 'show'],
-      a: "Ten are on this page. The ones I'd open first are CallEnvoy for voice agents that make phone calls, Namesmith Agents for multi-agent orchestration, and Review Sieve for a model-judged review pipeline.",
+      a: "Eleven are on this page. The ones I'd open first are CallEnvoy for voice agents that make phone calls, Namesmith Agents for multi-agent orchestration, and Review Sieve for a model-judged review pipeline.",
       cites: [['All projects', 'projects'], ['CallEnvoy', 'pj-callenvoy'], ['Namesmith Agents', 'pj-namesmith'], ['Review Sieve', 'pj-reviewsieve']],
     },
     {
@@ -193,6 +199,8 @@
       'Have you shipped RAG in production?': 'xp-brahmasumm',
       'Which agent systems have you built?': 'pj-callenvoy',
       'tell me about callenvoy': 'pj-callenvoy',
+      'tell me about eklavya': 'pj-eklavya',
+      'have you built an android app': 'pj-eklavya',
       'how does review sieve work': 'pj-reviewsieve',
       'have you built a macos app': 'pj-deskrecall',
       'what is Sandhyāvandanam': 'pj-deskrecall',
